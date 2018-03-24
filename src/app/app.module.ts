@@ -20,8 +20,7 @@ import { AddproductComponent } from './seller/addproduct/addproduct.component';
 import { EditprofileComponent } from './auth/editprofile/editprofile.component';
 import { EditproductComponent } from './seller/editproduct/editproduct.component';
 import { SearchComponent } from './search/search.component';
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { LayoutComponent } from './layout/layout.component';
 
 const appRoutes = [
   {path: '', component: HomeComponent},
@@ -36,7 +35,6 @@ const appRoutes = [
   {path: 'profile/edit', component: EditprofileComponent},
   {path: 'product/edit/:id', component: EditproductComponent}, 
   {path: 'search/:keyword', component: HomeComponent},  
-
 ];
 
 
@@ -56,8 +54,7 @@ const appRoutes = [
     EditprofileComponent,
     EditproductComponent,
     SearchComponent,
-    HeaderComponent,
-    SidebarComponent,    
+    LayoutComponent,      
   ],
   imports: [
     BrowserModule,
