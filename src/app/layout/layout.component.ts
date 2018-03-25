@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../categories.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class LayoutComponent implements OnInit {
   cats;
-  //subcat;
+  isHidden = true;
+  i = 0;
+  stateArray = ["", "active"];
+  state = "";
 
   constructor(private categoriesService: CategoriesService) { }
 
@@ -17,6 +20,10 @@ export class HeaderComponent implements OnInit {
       console.log(res);
       this.cats = res;      
     });
+  }
+
+  toggle(){
+    this.state = this.stateArray[(++this.i) % 2]; 
   }
 
 }

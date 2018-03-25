@@ -4,6 +4,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 
+
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
@@ -24,8 +25,8 @@ a, a:hover, a:focus {
 }
 
 .navbar {
-    padding: 15px 10px;
-    background: #fff;
+    /* padding: 15px 10px; */
+    background: #ddd;
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
@@ -71,7 +72,7 @@ a, a:hover, a:focus {
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    /* border-bottom: 1px solid #47748b; */
 }
 
 #sidebar ul p {

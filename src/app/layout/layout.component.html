@@ -1,0 +1,67 @@
+<div class="wrapper toggled">
+
+	<nav id="sidebar" class="{{state}}">
+		<ul class="list-unstyled components">
+			<p style="text-align: center;">Site</p>
+			<li>
+				<a routerLink="/" routerLinkActive="active">Home</a>
+			</li>
+			<li>
+				<a href="#">My Account</a>
+			</li>
+			<p style="text-align: center;">Categories</p>
+			<li *ngFor="let cat of cats">
+				<a href="#ref{{cat._id}}" data-toggle="collapse" aria-expanded="false">{{ cat.name }}</a>
+				<ul class="collapse list-unstyled" id="ref{{cat._id}}">
+					<li *ngFor="let subcat of cat.subcat">
+						<!-- <div class="form-control">
+							<label>
+								<input type="checkbox"> {{ subcat.name }}
+							</label>
+						</div> -->
+						<a href="">{{ subcat.name }}</a>
+
+					</li>
+				</ul>
+
+			</li>
+
+			<li>
+
+		</ul>
+	</nav>
+
+	<div id="content">
+		<nav class="navbar navbar-default navbar-top navbar-inverse">
+			<div class="container-fluid">
+
+				<div class="navbar-header">
+
+					<b href="" class="navbar-brand">
+						<i class="glyphicon glyphicon-align-left" (click)="toggle()"></i>
+						<a href="#">Purchase</a>
+					</b>
+				</div>
+
+				<div class="collpase navbar-collapse">
+
+					<form action="" class="navbar-form navbar-right" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="search this out">
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div>
+
+			<br>
+
+			<div>
+				<a *ngFor="let cat of cats" href="#" id={{cat._id}} style="padding:15px">{{cat.name}}</a>
+				<a href="#">All Categories</a>
+			</div>
+		</nav>
+
+		<router-outlet></router-outlet>
+	</div>
+</div>
