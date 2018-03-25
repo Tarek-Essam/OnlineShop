@@ -12,8 +12,8 @@ export class ProductsService {
   getProducts():Observable<Iproduct[]>{
     return this.http.get<Iproduct[]>('http://localhost:10000/products');
   }
-  getProduct(id):Observable<Iproduct>{
-    return this.http.get<Iproduct>('http://localhost:10000/products/'+id)
+  getProduct(productId):Observable<Iproduct>{
+    return this.http.get<Iproduct>('http://localhost:10000/products/'+productId);
   }
 
 }

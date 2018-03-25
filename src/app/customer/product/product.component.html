@@ -1,3 +1,86 @@
-<p>
-  product works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>Document</title>
+  <style>
+  .monospaced { font-family: 'Ubuntu Mono', monospaced ; }
+  .description{
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width: 100%;
+  }
+  </style>
+</head>
+<body>
+    <div class=”container-fluid”>
+        <div class=”row”>
+          <div class="col-md-4">
+            <img src="../../../assets/images/mobile.jpg" alt="Kodak Brownie Flash B Camera" class="image-responsive"/>
+          </div>
+        <div class="col-md-8"> 
+          <div class="row">
+            <div class="col-md-12">
+                <h2>{{product.name}}</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                      <span class="label label-default">blue</span>
+                      <span class="monospaced">No. 1960140180</span>
+                  </div>
+                  <div class="col-md-8">
+                      Seller Name:<span class="monospaced"></span>
+                  </div>
+                </div>
+                <p class="description">
+                    Classic film camera. Uses 620 roll film.
+                    Has a 2&frac14; x 3&frac14; inch image size.kdnslkdfnskdfnskdnfslkdnflskdnfslkdnfslkdnfskldfnlskdnfslkdnfslkdnfslkdnfslkdnflskdnfslkdnflsk
+                afsdfasfddddddddddddddddddddddddddl kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk kkkkkk kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk kkkkkkkkkkkkkkkkkkkk kkkkkkk kkkkkkk kkk kkkkkkk kkkkkkkkk kkkkkkkkkkk kkkkkk kkkkkkk  kkkkkkkkk kkkkkkkkk kkkkkkkk kkkkkkkkkkk kkkkkkkkk kkkkkkk
+              s;d,s;a',d;,;,;zd,xc;v,d;;d dkfdsk emkdf sdmfsdfm lmflsdm sdfs ldmfsl slmf lsdflsdmflm lfm sldfmsldmf slmdf mlsmdfsmdlmf sldmf sldfk l sdfsdfn ss'dfslmdfl sdfs'df nkdfaflml lsansdls;dm asdmlas ansdasld; mlasmdl a lsds',d; lmsdlasndknk  a;sdm knaskda;s ksndkas kdfminas iasasdos sndajksdaks askdnaks ksdaks ksdalksn askd aakdnask nksdna sdk nksadnaksd;l kdnfd sdfksdn aksldnkasndj sasdkasndkn aksdnksadnk sndkansk nakdnkasndkan dkansd aksdnasdnkasnd aknsk nsakdnasknd aksndaksdn akdlasndkasnd lasndkalsd naksd nlaksdna kdkasndlknals nasdaklsn dkalsndkas nlndasnd klasdknas ndalsdasdn ansdnalsd nalskdnlaskn dlasdn asndlkansdsanlk ndasndalsknd aksndks nkasndlakn laskdnl askdnaslk naslkndl nasnd lkndaksn laksnd alsnd lnaslkdn lasnd lskdn alsk ndksandalksnd ank    
+              </p>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-3">
+                  <span class="sr-only">Four out of Five Stars</span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  <span class="label label-primary">61</span>
+                 </div>
+                 <div class="col-md-3">
+                  <span class="monospaced">Write a Review</span>
+                 </div>
+          </div>
+          <div class="row">
+              <div class="col-md-3 bottom-rule">
+                  <h2 class="product-price">${{product.price}}</h2>
+              </div>
+          </div>
+          <div class="row add-to-cart">
+              <div class="col-md-5 product-qty">
+                <input class="btn btn-default btn-lg btn-qty" value="1" />
+               <span class="btn btn-default btn-lg btn-qty">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+               </span>
+             
+               <span class="btn btn-default btn-lg btn-qty">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+               </span>
+              </div>
+             
+              <div class="col-md-4">
+               <button class="btn btn-primary btn-brand btn-lg btn-block"><i class="glyphicon glyphicon-plus" ></i>Add to Cart</button>
+              </div>
+             </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+

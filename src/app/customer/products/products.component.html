@@ -1,4 +1,3 @@
 <div *ngFor="let product of products" >
-  <a routerLink="product/+{{product.id}}">{{product.name}}</a>
-  <p>{{product.price}}</p>
+  <a href="/product/{{product._id}}" (click)="goToDetails(product)">{{product.name}}</a>
 </div>
