@@ -1,6 +1,5 @@
-<div class="wrapper toggled">
-
-	<nav id="sidebar" class="{{state}}">
+<mat-sidenav-container class="example-container">
+	<mat-sidenav #sidenav class="nav" mode="push">
 		<ul class="list-unstyled components">
 			<p style="text-align: center;">Site</p>
 			<li>
@@ -10,15 +9,11 @@
 				<a href="#">My Account</a>
 			</li>
 			<p style="text-align: center;">Categories</p>
-			<li *ngFor="let cat of cats">
-				<a href="#ref{{cat._id}}" data-toggle="collapse" aria-expanded="false">{{ cat.name }}</a>
+			<li *ngFor="let cat of cats" style="padding:15px">
+				<a href="#ref{{cat._id}}" data-toggle="collapse" aria-expanded="false" style="padding:15px">{{ cat.name }}</a>
 				<ul class="collapse list-unstyled" id="ref{{cat._id}}">
-					<li *ngFor="let subcat of cat.subcat">
-						<!-- <div class="form-control">
-							<label>
-								<input type="checkbox"> {{ subcat.name }}
-							</label>
-						</div> -->
+					<li *ngFor="let subcat of cat.subcat" style="padding:15px">
+
 						<a href="">{{ subcat.name }}</a>
 
 					</li>
@@ -29,39 +24,95 @@
 			<li>
 
 		</ul>
-	</nav>
+	</mat-sidenav>
 
-	<div id="content">
-		<nav class="navbar navbar-default navbar-top navbar-inverse">
-			<div class="container-fluid">
+	<mat-sidenav-content>
+		<mat-toolbar>
 
-				<div class="navbar-header">
-
-					<b href="" class="navbar-brand">
-						<i class="glyphicon glyphicon-align-left" (click)="toggle()"></i>
-						<a href="#">Purchase</a>
-					</b>
-				</div>
-
-				<div class="collpase navbar-collapse">
-
-					<form action="" class="navbar-form navbar-right" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="search this out">
+			<mat-toolbar-row>
+				<mat-icon (click)="sidenav.toggle()">list</mat-icon>
+				<span>Purchase</span>
+				<!-- search bar -->
+				<div class="container">
+					<div id="search-form" class="search-form js-search-form">
+						<form class="form-search" role="search" action="/search.php" method="get">
+							<div class="input-group">
+								<input (input)="search()" id="search" type="text" class="form-control" placeholder="Search for Products, Brands and more..." />
+								<span class="input-group-btn">
+									<button class="btn btn-info" type="button">
+										<i class="fa fa-search"></i>
+									</button>
+								</span>
+							</div>
+							<!-- <p class="clear top-keyword">
+							<span class="hidden-xs">Top Keywords:</span>
+							<a href="#" title="Google">Google</a>,
+							<a href="#" title="Bootstrap 3">Bootstrap 3</a>,
+							<a href="#" title="Bootsnipp">Bootsnipp</a>,
+							<a href="#" title="Search">Search</a>,
+							<a href="#" title="Suggestion">Suggestion</a>
+						</p> -->
+						</form>
+						<div class="instant-results">
+							<ul class="list-unstyled result-bucket">
+								<li *ngFor="let ele of results" class="result-entry" data-suggestion="Target 1" data-position="1" data-type="type" data-analytics-type="merchant">
+									<a href="">{{ele.name}}</a>
+								</li>
+								<!-- <li class="result-entry" data-suggestion="Target 1" data-position="1" data-type="type" data-analytics-type="merchant">
+									<a href="#" class="result-link">
+										<div class="media">
+											<div class="media-left">
+												<img src="http://mellon.co.tz/wp-content/uploads/2016/05/noimage.gif" class="media-object">
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">Heading 1</h4>
+												<p>0 offers available</p>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="result-entry" data-suggestion="Target 2" data-position="1" data-type="type" data-analytics-type="merchant">
+									<a href="#" class="result-link">
+										<div class="media">
+											<div class="media-left">
+												<img src="http://mellon.co.tz/wp-content/uploads/2016/05/noimage.gif" class="media-object">
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">Heading 2</h4>
+												<p>3 offers available</p>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="result-entry" data-suggestion="Target 3" data-position="2" data-type="type" data-analytics-type="merchant">
+									<a href="#" class="result-link">
+										<div class="media">
+											<div class="media-left">
+												<img src="http://mellon.co.tz/wp-content/uploads/2016/05/noimage.gif" class="media-object">
+											</div>
+											<div class="media-body">
+												<h4 class="media-heading">Heading 3</h4>
+												<p>17 offers available</p>
+											</div>
+										</div>
+									</a>
+								</li> -->
+							</ul>
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
+					</div>
 				</div>
-			</div>
+			</mat-toolbar-row>
 
-			<br>
+			<mat-toolbar-row>
+				<div>
+					<a *ngFor="let cat of cats" href="#" id={{cat._id}} style="padding:15px">{{cat.name}}</a>
+					<a href="#" style="padding:15px">All Categories</a>
+				</div>
+			</mat-toolbar-row>
 
-			<div>
-				<a *ngFor="let cat of cats" href="#" id={{cat._id}} style="padding:15px">{{cat.name}}</a>
-				<a href="#">All Categories</a>
-			</div>
-		</nav>
+		</mat-toolbar>
 
 		<router-outlet></router-outlet>
-	</div>
-</div>
+
+	</mat-sidenav-content>
+</mat-sidenav-container>
