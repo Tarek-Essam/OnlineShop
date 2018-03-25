@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { LoginService } from './login.service';
 import { CategoriesService } from './categories.service';
+import { ProductsService } from './products.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -61,7 +62,7 @@ const appRoutes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [LoginService, CategoriesService],
+  providers: [LoginService, CategoriesService,ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
