@@ -1,6 +1,5 @@
-<div class="wrapper toggled">
-
-	<nav id="sidebar" class="{{state}}">
+<mat-sidenav-container class="example-container">
+	<mat-sidenav #sidenav class="nav" mode="push">
 		<ul class="list-unstyled components">
 			<p style="text-align: center;">Site</p>
 			<li>
@@ -10,15 +9,11 @@
 				<a href="#">My Account</a>
 			</li>
 			<p style="text-align: center;">Categories</p>
-			<li *ngFor="let cat of cats">
-				<a href="#ref{{cat._id}}" data-toggle="collapse" aria-expanded="false">{{ cat.name }}</a>
+			<li *ngFor="let cat of cats" style="padding:15px">
+				<a href="#ref{{cat._id}}" data-toggle="collapse" aria-expanded="false" style="padding:15px">{{ cat.name }}</a>
 				<ul class="collapse list-unstyled" id="ref{{cat._id}}">
-					<li *ngFor="let subcat of cat.subcat">
-						<!-- <div class="form-control">
-							<label>
-								<input type="checkbox"> {{ subcat.name }}
-							</label>
-						</div> -->
+					<li *ngFor="let subcat of cat.subcat" style="padding:15px">
+
 						<a href="">{{ subcat.name }}</a>
 
 					</li>
@@ -29,39 +24,46 @@
 			<li>
 
 		</ul>
-	</nav>
+	</mat-sidenav>
 
-	<div id="content">
-		<nav class="navbar navbar-default navbar-top navbar-inverse">
-			<div class="container-fluid">
+	<mat-sidenav-content>
+		<mat-toolbar>
 
-				<div class="navbar-header">
-
-					<b href="" class="navbar-brand">
-						<i class="glyphicon glyphicon-align-left" (click)="toggle()"></i>
-						<a href="#">Purchase</a>
-					</b>
-				</div>
-
-				<div class="collpase navbar-collapse">
-
-					<form action="" class="navbar-form navbar-right" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="search this out">
+			<mat-toolbar-row>
+				<mat-icon (click)="sidenav.toggle()">list</mat-icon>
+				<span>Purchase</span>
+				<!-- search bar -->
+				<div class="container">
+					<!-- <div class="row">
+						<div class="col-md-6 col-md-offset-3">
+							<h1>Expandable Search Form</h1>
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
+					</div> -->
+					<div class="row">
+						<div class="col-md-4 col-md-offset-9">
+							<form action="" class="search-form">
+								<div class="form-group has-feedback">
+									<label for="search" class="sr-only">Search</label>
+									<input type="text" class="form-control" name="search" id="search" placeholder="search">
+									<span class="glyphicon glyphicon-search form-control-feedback"></span>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
-			</div>
 
-			<br>
+			</mat-toolbar-row>
 
-			<div>
-				<a *ngFor="let cat of cats" href="#" id={{cat._id}} style="padding:15px">{{cat.name}}</a>
-				<a href="#">All Categories</a>
-			</div>
-		</nav>
+			<mat-toolbar-row>
+				<div>
+					<a *ngFor="let cat of cats" href="#" id={{cat._id}} style="padding:15px">{{cat.name}}</a>
+					<a href="#" style="padding:15px">All Categories</a>
+				</div>
+			</mat-toolbar-row>
+
+		</mat-toolbar>
 
 		<router-outlet></router-outlet>
-	</div>
-</div>
+
+	</mat-sidenav-content>
+</mat-sidenav-container>
