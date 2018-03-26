@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CategoriesService } from './categories.service';
 
 @Component({
@@ -7,12 +7,17 @@ import { CategoriesService } from './categories.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  keyword;
   shouldRun = true;
+  
+  // @ViewChild(search)
 
   constructor(private categoriesService: CategoriesService) { }
 
- 
-
+  getKeyword($event){
+    this.keyword = $event;
+    console.log(this.keyword);
+    
+  }
  
 }

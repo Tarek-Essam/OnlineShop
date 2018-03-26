@@ -13,4 +13,9 @@ export class CategoriesService {
   searchProducts(keyword:String){
     return this.http.get(`http://localhost:9050/api/products/search/${keyword}`);
   }
+
+  getSubcats(){
+    return this.http.get('http://localhost:9050/api/subcat');
+
+  }
 }

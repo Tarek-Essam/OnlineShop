@@ -10,23 +10,11 @@ export class LayoutComponent implements OnInit {
   cats;
   keyword;
   results;
-  constructor(private categoriesService: CategoriesService) { }
-
-  ngOnInit() {
+  constructor(private categoriesService: CategoriesService) {
     this.categoriesService.getCats().subscribe(res => {
       this.cats = res;
     });  
-  
-  }
+   }
 
-  search() {
-
-    this.keyword = $('#search').val();
-
-    if (this.keyword )
-      this.categoriesService.searchProducts(this.keyword).subscribe(res => {
-        console.log(res);
-        this.results = res;
-      });   
-  }
+ngOnInit(){}
 }

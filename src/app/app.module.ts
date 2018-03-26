@@ -12,8 +12,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { LoginService } from './login.service';
 import { CategoriesService } from './categories.service';
@@ -46,7 +45,7 @@ const appRoutes = [
   {path: 'products/add', component: AddproductComponent},
   {path: 'profile/edit', component: EditprofileComponent},
   {path: 'product/edit/:id', component: EditproductComponent}, 
-  {path: 'search/:keyword', component: HomeComponent},  
+  {path: 'search/:keyword', component: SearchComponent},  
 ];
 
 
@@ -80,7 +79,8 @@ const appRoutes = [
     MatToolbarModule ,
     MatIconModule,
     MatInputModule,
-    FormsModule    
+    FormsModule,
+    MatGridListModule    
   ],
   providers: [LoginService, CategoriesService],
   bootstrap: [AppComponent]

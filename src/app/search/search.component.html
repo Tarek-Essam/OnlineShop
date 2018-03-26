@@ -1,3 +1,34 @@
-<p>
-  search works!
-</p>
+<mat-sidenav-container class="example-container">
+
+  <mat-sidenav mode="side" opened class="example-sidenav">
+    <h3>Category</h3>
+    <div *ngFor="let subcat of subcats" id="{{subcat._id}}">
+      <mat-checkbox (click)="catFilter($event,subcat.name)" >
+        {{subcat.name}}
+      </mat-checkbox>
+    </div>
+    <h3>Price</h3>
+    <div>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="From" name="priceFrom" min="0" step="500" max="{{priceTo}}" type="number" (input)="filter()"  [(ngModel)]="priceFrom">
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="To" name="priceTo" step="500" min="{{priceFrom}}" type="number" (input)="filter()"  [(ngModel)]="priceTo">
+              </mat-form-field>
+          </form>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-grid-list cols="4" rowHeight="2:1">
+     
+      <mat-grid-tile *ngFor="let product of matched">
+                 <p>{{product.name}}</p> 
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-sidenav-content>
+
+</mat-sidenav-container> 
+

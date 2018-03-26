@@ -1,0 +1,16 @@
+
+.example-container{
+  height: 100%;
+}
+.example-sidenav {   
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 15%;
+  padding: 10px;
+  background: bisque;
+}
+
+h3{
+    text-align: center;
+}
