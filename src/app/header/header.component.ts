@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../categories.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.categoriesService.getCats().subscribe(res => {
       console.log(res);
-      this.cats = res;      
+      this.cats = res;
     });
   }
 

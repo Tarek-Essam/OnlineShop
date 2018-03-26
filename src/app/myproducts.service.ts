@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable()
-export class CategoriesService {
+export class MyproductsService {
 
   constructor(private http: HttpClient) { }
 
-  getCats(){
-    return this.http.get('http://localhost:9050/api/categories');
+  getmyproducts(userid : string){
+
+    return this.http.get('http://localhost:9050/api/${userid}');
+
   }
 }

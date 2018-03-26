@@ -1,12 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-
+import {HttpModule} from '@angular/http';
 import { LoginService } from './login.service';
-import { OrderService } from './seller/orders/order.service';
 import { CategoriesService } from './categories.service';
+import { AddproductService } from './addproduct.service';
+import { EditproductService } from './editproduct.service';
+import { MyproductsService } from './myproducts.service';
+import { FormsModule, ReactiveFormsModule ,FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -24,7 +27,6 @@ import { EditproductComponent } from './seller/editproduct/editproduct.component
 import { SearchComponent } from './search/search.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { ProductsService } from './products.service';
 
 const appRoutes = [
   {path: '', component: HomeComponent},
@@ -37,8 +39,9 @@ const appRoutes = [
   {path: 'order/:id', component: OrderdetailsComponent},
   {path: 'products/add', component: AddproductComponent},
   {path: 'profile/edit', component: EditprofileComponent},
-  {path: 'product/edit/:id', component: EditproductComponent}, 
-  {path: 'search/:keyword', component: HomeComponent},  
+  {path: 'product/edit/:id', component: EditproductComponent},
+  {path: 'product/list/:id', component: MyproductsComponent},
+  {path: 'search/:keyword', component: HomeComponent},
 
 ];
 
@@ -60,15 +63,17 @@ const appRoutes = [
     EditproductComponent,
     SearchComponent,
     HeaderComponent,
-    SidebarComponent,    
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [LoginService, CategoriesService, OrderService,ProductsService],
+  providers: [LoginService, CategoriesService, AddproductService,EditproductService , MyproductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
