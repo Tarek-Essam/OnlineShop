@@ -7,10 +7,6 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
 
   getCats(){
-    return this.http.get('http://localhost:9050/api/categories');
-  }
-
-  searchProducts(keyword:String){
-    return this.http.get(`http://localhost:9050/api/products/search/${keyword}`);
+    return this.http.get('http://localhost:9090/api/categories');
   }
 }

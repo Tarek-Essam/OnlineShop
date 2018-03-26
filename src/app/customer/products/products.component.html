@@ -1,3 +1,9 @@
-<div *ngFor="let product of products" >
-  <a routerLink="/product/{{product._id}}" routerLinkActive="active"></a>{{product.name}}</a>
-</div>
+
+  <div class="card" *ngFor="let product of products" >
+    <img src="https://www.gravatar.com/avatar/">
+        <div class="card-info">
+
+          <h3><a href="/product/{{product._id}}">{{product.name}}</a></h3>
+          <p>{{product.price}}</p>
+        </div>
+  </div>

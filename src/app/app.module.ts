@@ -1,23 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-
-
 
 import { LoginService } from './login.service';
+import { OrderService } from './seller/orders/order.service';
 import { CategoriesService } from './categories.service';
-import { ProductsService } from './products.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -33,7 +22,9 @@ import { AddproductComponent } from './seller/addproduct/addproduct.component';
 import { EditprofileComponent } from './auth/editprofile/editprofile.component';
 import { EditproductComponent } from './seller/editproduct/editproduct.component';
 import { SearchComponent } from './search/search.component';
-import { LayoutComponent } from './layout/layout.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ProductsService } from './products.service';
 
 const appRoutes = [
   {path: '', component: HomeComponent},
@@ -48,6 +39,7 @@ const appRoutes = [
   {path: 'profile/edit', component: EditprofileComponent},
   {path: 'product/edit/:id', component: EditproductComponent}, 
   {path: 'search/:keyword', component: HomeComponent},  
+
 ];
 
 
@@ -67,23 +59,16 @@ const appRoutes = [
     EditprofileComponent,
     EditproductComponent,
     SearchComponent,
-    LayoutComponent,      
+    HeaderComponent,
+    SidebarComponent,    
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    MatButtonModule,
-    MatSidenavModule,
-    BrowserAnimationsModule,
-    MatCheckboxModule,
-    NoopAnimationsModule,
-    MatToolbarModule ,
-    MatIconModule,
-    MatInputModule,
-    FormsModule    
+    HttpModule
   ],
-  providers: [LoginService, CategoriesService,ProductsService],
+  providers: [LoginService, CategoriesService, OrderService,ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
