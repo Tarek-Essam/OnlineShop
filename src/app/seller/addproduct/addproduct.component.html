@@ -1,3 +1,31 @@
-<p>
-  addproduct works!
-</p>
+
+<!-- <form  style="border:1px solid #ccc;width:60%;margin: auto;  "> -->
+  <div class="container">
+    <h1>Add Product</h1>
+    <p>Please fill in this form to add an product .</p>
+    <hr>
+    <tr>
+      <td>  <input type="text" [(ngModel)]="model.productName" placeholder="Enter Name" required>
+</td>
+      <td><img src="{{model.image}}" width="200" height="200" alt=""></td>
+    </tr>
+    <label for="productName" ><b>Product Name</b></label>
+
+    <label for="productPrice"><b>Product Price</b></label>
+    <input type="text" [(ngModel)]="model.productPrice" placeholder="Enter price" required>
+
+    <label for="pcs"><b>avaliable pcs</b></label>
+    <br><input type="number" [(ngModel)]="model.pcs" placeholder="Enter number" required>
+
+    <br><label for="productDesc"><b>Product Decscription</b></label>
+    <input type="text" [(ngModel)]="model.productDesc" placeholder="Enter desc" required>
+
+    <input type="file" class="form-control"  name="image" id="image" #uimage
+ (change)="fileUpload(uimage.files)" >
+<!-- ng-file-select="onFileSelect($files)" -->
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="submit" (click)="addProduct()">ADDD</button>
+    </div>
+  </div>
+<!-- </form> -->

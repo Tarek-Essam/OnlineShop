@@ -1,3 +1,35 @@
 <p>
   myproducts works!
 </p>
+
+<div>
+  <a href="#">my product</a>
+  <div *ngFor="let pro of products" href="#" id={{pro._id}} style="padding:15px">{{pro.name}}</div>
+</div>
+
+<div style="">
+<table style="width:95%; border : 1px;" >
+  <tr>
+    <td> <img src="" alt="myproducts"> </td>
+    <td>
+      <tr>
+      {{pro.name}}
+    </tr>
+    <tr>
+      {{pro.desc}}
+    </tr>
+  </td>
+    <td>
+      <tr>
+        {{pro.price}}
+      </tr>
+      <tr>
+        {{pro.pcs}}
+      </tr>
+      <tr>
+        <button type="button" name="button"> view product </button>
+      </tr>
+    </td>
+  </tr>
+</table>
+</div>
