@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,8 +13,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 
+import {HttpModule} from '@angular/http';
 import { LoginService } from './login.service';
 import { CategoriesService } from './categories.service';
+import { AddproductService } from './addproduct.service';
+import { EditproductService } from './editproduct.service';
+import { MyproductsService } from './myproducts.service';
+import { FormsModule, ReactiveFormsModule ,FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -46,6 +51,10 @@ const appRoutes = [
   {path: 'profile/edit', component: EditprofileComponent},
   {path: 'product/edit/:id', component: EditproductComponent}, 
   {path: 'search/:keyword', component: SearchComponent},  
+  {path: 'product/edit/:id', component: EditproductComponent},
+  {path: 'product/list/:id', component: MyproductsComponent},
+  {path: 'search/:keyword', component: HomeComponent},
+
 ];
 
 
@@ -65,7 +74,7 @@ const appRoutes = [
     EditprofileComponent,
     EditproductComponent,
     SearchComponent,
-    LayoutComponent,      
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -80,9 +89,12 @@ const appRoutes = [
     MatIconModule,
     MatInputModule,
     FormsModule,
-    MatGridListModule    
+    MatGridListModule,    
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [LoginService, CategoriesService],
+  providers: [LoginService, CategoriesService, AddproductService,EditproductService , MyproductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
