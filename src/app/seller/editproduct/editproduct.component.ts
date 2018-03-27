@@ -15,6 +15,7 @@ export class EditproductComponent implements OnInit {
   model = {};
   subcats;
   id;
+  res;
 
   constructor(private EditproductService: EditproductService,
     private categoriesService: CategoriesService,
@@ -42,6 +43,7 @@ export class EditproductComponent implements OnInit {
   addProduct() {
     this.EditproductService.addproduct(this.model, "5ab8d594f9c17c6b7c3938b8").subscribe(res => {
       console.log(res);
+      this.res=res.json();
     });
     console.log(this.model);
   }
