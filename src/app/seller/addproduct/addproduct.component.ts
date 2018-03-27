@@ -13,6 +13,7 @@ export class AddproductComponent implements OnInit {
   form: FormGroup;
   loading: boolean = false;
   subcats;
+  res;
 
   model = {
     productName: '',
@@ -37,6 +38,7 @@ export class AddproductComponent implements OnInit {
   addProduct() {
     this.AddproductService.addproduct(this.model).subscribe(res => {
       console.log(res);
+      this.res = res.json();
     });
     //console.log(this.model);
   }
