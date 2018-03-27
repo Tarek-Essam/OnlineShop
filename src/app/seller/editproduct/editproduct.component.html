@@ -28,6 +28,7 @@
     <input type="file" class="form-control"  name="image" id="image" (ngModel)="model.img" #uimage = "ngModel"
   (change)="fileUpload(uimage.files)" >
 <!-- [(nv-file-select)] uploader="model.image"  -->
+    <span style="color:red"><h3>{{res?.result}}{{res?.message}}</h3></span>
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
       <button type="submit" class="submit" (click)="addProduct()">EDIT</button>
