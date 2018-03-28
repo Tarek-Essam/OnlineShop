@@ -10,10 +10,10 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   getProducts():Observable<Iproduct[]>{
-    return this.http.get<Iproduct[]>('http://localhost:10000/products');
+    return this.http.get<Iproduct[]>('http://localhost:9050/api/products');
   }
   getProduct(productId):Observable<Iproduct>{
-    return this.http.get<Iproduct>('http://localhost:10000/products/'+productId);
+    return this.http.get<Iproduct>('http://localhost:9050/api/products/'+productId);
   }
 
 }

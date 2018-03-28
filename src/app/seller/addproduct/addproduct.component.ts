@@ -3,6 +3,7 @@ import { AddproductService } from '../../addproduct.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from '../../categories.service';
 
+
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
@@ -21,12 +22,13 @@ export class AddproductComponent implements OnInit {
     productDesc: '',
     image: '',
     subcat:'',
-    // userId : ''
+    userId : '5abbf3cb87843c4931fda0b2'
   };
 
   @ViewChild('fileInput') fileInput: ElementRef;
   // private AddproductService: AddproductService
-  constructor(private AddproductService: AddproductService, private categoriesService: CategoriesService) {
+  constructor(private AddproductService: AddproductService, 
+              private categoriesService: CategoriesService) {
     this.categoriesService.getSubcats().subscribe((res) => {
       this.subcats = res;
     });
@@ -52,3 +54,4 @@ export class AddproductComponent implements OnInit {
     }
   
   }
+}

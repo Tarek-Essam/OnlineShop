@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CategoriesService } from '../categories.service';
-
+import { CartService } from '../cart.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -21,7 +21,8 @@ export class SearchComponent implements OnInit {
     constructor(
         private categoriesService: CategoriesService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private cartservice: CartService
     ) {
         this.route.params.subscribe((params: Params) => {
             this.keyword = params.keyword;
@@ -79,6 +80,12 @@ export class SearchComponent implements OnInit {
                 }
             }
         }
+    }
+
+    addToCart(id){
+        this.cartservice.addToCart(id).subscribe((err) => {
+            
+        });
     }
 }
 

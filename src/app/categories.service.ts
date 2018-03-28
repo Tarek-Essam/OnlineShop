@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class CategoriesService {
@@ -18,4 +18,6 @@ export class CategoriesService {
     return this.http.get('http://localhost:9050/api/subcat');
 
   }
+
+ 
 }

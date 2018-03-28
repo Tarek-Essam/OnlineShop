@@ -1,57 +1,64 @@
 <mat-sidenav-container class="example-container">
-	<mat-sidenav #sidenav class="nav" mode="push">
-		<ul class="list-unstyled components">
-			<p style="text-align: center;">Site</p>
-			<li>
-				<a routerLink="/" routerLinkActive="active">Home</a>
-			</li>
-			<li>
-				<a href="#">My Account</a>
-			</li>
-			<p style="text-align: center;">Categories</p>
-			<li *ngFor="let cat of cats" style="padding:15px">
-				<a href="#ref{{cat._id}}" data-toggle="collapse" aria-expanded="false" style="padding:15px">{{ cat.name }}</a>
-				<ul class="collapse list-unstyled" id="ref{{cat._id}}">
-					<li *ngFor="let subcat of cat.subcat" style="padding:15px">
+	<mat-sidenav #sidenav class="nav" mode="push">		
+		<!-- //////////////////// -->
+		<mat-accordion>
+			<mat-expansion-panel *ngFor="let cat of cats">
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						{{ cat.name }}
+					</mat-panel-title>					
+				</mat-expansion-panel-header>
+				<a href="#" mat-button *ngFor="let subcat of cat.subcat" style="display:block">{{ subcat.name }}</a>	
+			</mat-expansion-panel>			
+		</mat-accordion>
 
-						<a href="">{{ subcat.name }}</a>
-
-					</li>
-				</ul>
-
-			</li>
-
-			<li>
-
-		</ul>
+		<!-- //////////////////// -->
 	</mat-sidenav>
 
 	<mat-sidenav-content>
 		<mat-toolbar>
 
 			<mat-toolbar-row>
-				<mat-icon (click)="sidenav.toggle()">list</mat-icon>
-				<span>Purchase</span>
+				<mat-icon (click)="sidenav.toggle()" style="cursor:pointer">list</mat-icon>
+				<a routerLink="/" routerLinkActive="active"><span>Purchase</span></a> 
 				<!-- search bar -->
 				<div class="container">
-					
+
 					<div class="row">
+						<div class="cart-box" id="Normal">
+							<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<button routerLink="/cart" routerLinkActive="active" class="draggable dropdown-toggle btn btn-primary btn-circle btn-xl" data-toggle="dropdown" role="button"
+									 aria-expanded="false">
+										<span class="glyphicon glyphicon-shopping-cart"></span>
+									</button>
+									<!-- <span class="cart-items-count">
+										<span class=" notification-counter">243</span>
+									</span> -->
+								</li>
+							</ul>
+						</div>
 						<div class="col-md-4 col-md-offset-9">
+
 							<form action="" class="search-form">
-								<div class="form-group has-feedback">
+
+								<div class="form-group has-feedback" style="padding-left:25px">
 									<label for="search" class="sr-only">Search</label>
 									<input [(ngModel)]="keyword" type="text" class="form-control" name="search" id="search" placeholder="search">
-								<a routerLink="/search/{{keyword}}" routerLinkActive="active"><span class="glyphicon glyphicon-search form-control-feedback"></span></a>	
+									<a routerLink="/search/{{keyword}}" routerLinkActive="active">
+										<span class="glyphicon glyphicon-search form-control-feedback"></span>
+									</a>
 								</div>
+
 							</form>
 						</div>
 					</div>
 				</div>
-
+			
 			</mat-toolbar-row>
 
-			<mat-toolbar-row>
-				<div>
+			<mat-toolbar-row >
+				<div >
 					<a *ngFor="let cat of cats" href="#" id={{cat._id}} style="padding:15px">{{cat.name}}</a>
 					<a href="#" style="padding:15px">All Categories</a>
 				</div>
@@ -59,7 +66,7 @@
 
 		</mat-toolbar>
 
-		<router-outlet></router-outlet>		
+		<router-outlet></router-outlet>
 
 	</mat-sidenav-content>
 </mat-sidenav-container>

@@ -19,11 +19,11 @@ export class MyproductsComponent implements OnInit {
     constructor(private MyproductsService: MyproductsService) { }
 
     ngOnInit() {
-      this.MyproductsService.getmyproducts("4343").subscribe(res => {
-        console.log(res);
-        this.pro = res;
-        console.log(this.pro);
-      });
+      // this.MyproductsService.getmyproducts("4343").subscribe(res => {
+      //   console.log(res);
+      //   this.pro = res;
+      //   console.log(this.pro);
+      // });
     }
 
 

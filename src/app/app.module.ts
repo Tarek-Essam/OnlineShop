@@ -12,6 +12,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import {HttpModule} from '@angular/http';
 import { LoginService } from './login.service';
@@ -19,6 +20,10 @@ import { CategoriesService } from './categories.service';
 import { AddproductService } from './addproduct.service';
 import { EditproductService } from './editproduct.service';
 import { MyproductsService } from './myproducts.service';
+import {ProductsService} from './products.service';
+import { CartService } from './cart.service';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialog} from '@angular/material/dialog';
+
 import { FormsModule, ReactiveFormsModule ,FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -74,7 +79,9 @@ const appRoutes = [
     EditprofileComponent,
     EditproductComponent,
     SearchComponent,
-    LayoutComponent
+    LayoutComponent,
+    
+
   ],
   imports: [
     BrowserModule,
@@ -93,8 +100,17 @@ const appRoutes = [
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    MatGridListModule,
+    MatExpansionModule        
   ],
-  providers: [LoginService, CategoriesService, AddproductService,EditproductService , MyproductsService],
+  providers: [LoginService, 
+              CategoriesService, 
+              AddproductService,
+              EditproductService , 
+              MyproductsService,
+              CartService,
+              ProductsService              
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
