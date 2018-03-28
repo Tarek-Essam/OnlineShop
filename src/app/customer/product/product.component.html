@@ -19,10 +19,10 @@
 <body>
     <div class=”container-fluid”>
         <div class=”row”>
-          <div class="col-md-4">
+          <div class="col-md-2">
             <img src="../../../assets/images/mobile.jpg" alt="Kodak Brownie Flash B Camera" class="image-responsive"/>
           </div>
-        <div class="col-md-8"> 
+        <div class="col-md-10"> 
           <div class="row">
             <div class="col-md-12">
                 <h2>{{product.name}}</h2>
@@ -35,6 +35,7 @@
                       Seller Name:<span class="monospaced"></span>
                   </div>
                 </div>
+                <div class="row">
                 <p class="description">
                     Classic film camera. Uses 620 roll film.
                     Has a 2&frac14; x 3&frac14; inch image size.kdnslkdfnskdfnskdnfslkdnflskdnfslkdnfslkdnfskldfnlskdnfslkdnfslkdnfslkdnfslkdnflskdnfslkdnflsk
@@ -42,16 +43,11 @@
               s;d,s;a',d;,;,;zd,xc;v,d;;d dkfdsk emkdf sdmfsdfm lmflsdm sdfs ldmfsl slmf lsdflsdmflm lfm sldfmsldmf slmdf mlsmdfsmdlmf sldmf sldfk l sdfsdfn ss'dfslmdfl sdfs'df nkdfaflml lsansdls;dm asdmlas ansdasld; mlasmdl a lsds',d; lmsdlasndknk  a;sdm knaskda;s ksndkas kdfminas iasasdos sndajksdaks askdnaks ksdaks ksdalksn askd aakdnask nksdna sdk nksadnaksd;l kdnfd sdfksdn aksldnkasndj sasdkasndkn aksdnksadnk sndkansk nakdnkasndkan dkansd aksdnasdnkasnd aknsk nsakdnasknd aksndaksdn akdlasndkasnd lasndkalsd naksd nlaksdna kdkasndlknals nasdaklsn dkalsndkas nlndasnd klasdknas ndalsdasdn ansdnalsd nalskdnlaskn dlasdn asndlkansdsanlk ndasndalsknd aksndks nkasndlakn laskdnl askdnaslk naslkndl nasnd lkndaksn laksnd alsnd lnaslkdn lasnd lskdn alsk ndksandalksnd ank    
               </p>
             </div>
+            </div>
           </div>
           <div class="row">
               <div class="col-md-3">
-                  <span class="sr-only">Four out of Five Stars</span>
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                  <span class="label label-primary">61</span>
+                <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
                  </div>
                  <div class="col-md-3">
                   <span class="monospaced">Write a Review</span>
@@ -81,6 +77,8 @@
         </div>
         </div>
     </div>
+    
+     <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
 </body>
 </html>
 
