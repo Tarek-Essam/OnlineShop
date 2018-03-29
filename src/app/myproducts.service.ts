@@ -9,7 +9,7 @@ export class MyproductsService {
 
   getmyproducts(userid : string){
 
-    return this.http.get('http://localhost:9050/api/${userid}');
+    return this.http.get('https://localhost:9050/api/${userid}');
 
   }
 }

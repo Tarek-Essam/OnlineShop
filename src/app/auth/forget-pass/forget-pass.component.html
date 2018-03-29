@@ -1,0 +1,72 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Forget Password</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    <form *ngIf="!displayValidator" [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+      <div class="row">
+        <div class="form-group col-md-6 col-md-offset-4">
+          <label for="email">Email</label>
+          <input formControlName="email" class="form-control" type="email" id="email">
+          <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+            <div *ngIf="email.errors.required">
+              email is Requierd!!
+            </div>
+            <div *ngIf="email.errors.pattern">
+              email should follow patteren example@example.example!!
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="row">
+          <div class="form-group col-md-9 col-md-offset-4">
+            <button
+            class="btn btn-primary pull-left" type="submit">Send Email</button>
+          </div>
+          <div *ngIf="error" class="alert alert-danger">
+            Make Sure The Email You Entered is the Mail You Registered With
+          </div>
+          <div *ngIf="mailSent" class="alert alert-success">
+            Mail sent to You with new validation code!!
+          </div>
+        </div>
+    </form>
+    <form *ngIf="displayValidator" [formGroup]="passForm" (ngSubmit)="submitPass()" autocomplete="off">
+      <div class="row">
+        <div class="form-group col-md-6 col-md-offset-4">
+          <label for="uuid">Validation Code</label>
+          <input formControlName="uuid" class="form-control" type="text" id="uuid">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6 col-md-offset-4">
+          <label for="password">Password</label>
+          <input formControlName="password" class="form-control" type="password" id="password">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6 col-md-offset-4">
+          <label for="password2">Password Confirmation</label>
+          <input formControlName="password2" class="form-control" type="password" id="password2">
+        </div>
+      </div>
+        <div class="row">
+          <div class="form-group col-md-9 col-md-offset-4">
+            <button
+            class="btn btn-primary pull-left" type="submit">Submit New Password</button>
+          </div>
+        </div>
+        <div *ngIf="uuidError && !passUpdated" class="alert alert-danger">
+          pleas make double check of the code sent to your mail!
+        </div>
+        <div *ngIf="passUpdated && !uuidError" class="alert alert-success">
+          your password have been updated now you can loggin with your new password
+        </div>
+    </form>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+<a class="forgot-pass" (click)="open(content)">Forgot Password!!</a>
