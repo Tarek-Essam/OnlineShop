@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyproductsService } from '../../myproducts.service';
+import { LoginService } from '../../login.service';
 
 
 @Component({
@@ -8,22 +9,29 @@ import { MyproductsService } from '../../myproducts.service';
   styleUrls: ['./myproducts.component.css']
 })
 export class MyproductsComponent implements OnInit {
-  pro = {
-      name :"rrr",
-      price :5 ,
-      desc:"fddfdf",
-      pcs : "344",
+   sellerId;
+  loggedIn : boolean = false;
+  pro = {};
 
-  };
-
-    constructor(private MyproductsService: MyproductsService) { }
+    constructor(private MyproductsService: MyproductsService, private loginSer: LoginService) { }
 
     ngOnInit() {
-      // this.MyproductsService.getmyproducts("4343").subscribe(res => {
-      //   console.log(res);
-      //   this.pro = res;
-      //   console.log(this.pro);
-      // });
+      this.loginSer.getUserInfo().subscribe((res : any) => {
+        if(res){
+          this.loggedIn = true;
+          console.log(res);
+          this.sellerId = res._id.json();
+          console.log(this.sellerId);
+        }else{
+          this.loggedIn = false;
+        }
+      });
+
+      this.MyproductsService.getmyproducts(this.sellerId).subscribe(res => {
+        console.log(res);
+        this.pro = res;
+        console.log(this.pro);
+      });
     }
 
 
