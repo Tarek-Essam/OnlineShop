@@ -1,0 +1,46 @@
+div {
+  display: flex;
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  font-family: sans-serif;
+  font-size: 16px;
+}
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+img {
+  height: 150px;
+  width: 150px;
+  margin: 0 20px 20px 0;
+}
+p {
+   font-style: italic;
+    font-family: "Times New Roman", Times, serif;
+    text-align: left;
+    font-size: 80px;
+
+}
+ h1 {
+  margin: 0;
+}
+
+h1 a {
+  font-size: 24px;
+  text-decoration: none;
+  font-weight: normal;
+  color: #0976b7;
+}
+
+ p {
+  font-size: inherit;
+  margin: 5px 0;
+}
