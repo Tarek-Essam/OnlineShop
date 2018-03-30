@@ -18,7 +18,7 @@ export class ProductsSubCatComponent implements OnInit {
       this.subcat=subcat;
     this.productsservice.getProductsBySubCat(this.subcat).subscribe(data=>{
       this.products=data;
-    })
-  }
-
+      })
+    }
+  } 
 }

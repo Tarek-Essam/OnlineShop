@@ -13,7 +13,7 @@ export class AddproductService {
     addproduct(add) {
       console.log(add);
         let headers = new Headers({'Content-Type':'application/json'});
-        return this.http.post('http://localhost:9050/api/products/add', JSON.stringify(add), {headers : headers});
+        return this.http.post('https://localhost:9050/api/products/add', JSON.stringify(add), {headers : headers});
     // console.log(res);
       }
 

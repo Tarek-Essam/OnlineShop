@@ -13,7 +13,7 @@ export class EditproductService {
 
     getproduct(id:string) {
         // let headers = new Headers({'Content-Type':'application/json'});
-        return this.http.get(`http://localhost:9050/api/products/${id}`);
+        return this.http.get(`https://localhost:9050/api/products/${id}`);
     // console.log(res);
       }
 
@@ -21,7 +21,7 @@ export class EditproductService {
         console.log(add);
         console.log(pid);
           let headers = new Headers({'Content-Type':'application/json'});
-          return this.http.put(`http://localhost:9050/api/products/edit/${pid}`, JSON.stringify(add), {headers : headers});
+          return this.http.put(`https://localhost:9050/api/products/edit/${pid}`, JSON.stringify(add), {headers : headers});
       // console.log(res);
         }
 

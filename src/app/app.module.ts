@@ -30,7 +30,7 @@ import { FormsModule, ReactiveFormsModule ,FormBuilder, FormGroup, Validators } 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { HomeComponent } from './customer/home/home.component';
+// import { HomeComponent } from './customer/home/home.component';
 import { ProductsComponent } from './customer/products/products.component';
 import { ProductComponent } from './customer/product/product.component';
 import { CartComponent } from './customer/cart/cart.component';
@@ -45,6 +45,29 @@ import { LayoutComponent } from './layout/layout.component';
 import { ProductsCatComponent } from './products-cat/products-cat.component';
 import { ProductsSubCatComponent } from './products-sub-cat/products-sub-cat.component';
 
+import {SocialLoginModule,AuthServiceConfig,GoogleLoginProvider,FacebookLoginProvider} from 'angular5-social-login';
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ForgetPassComponent } from './auth/forget-pass/forget-pass.component';
+import { HomeComponent } from './home/home.component';
+
+
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider("431655203947697")
+        },
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider("484031253264-4o9uj7ts2lacfepdbe7sk5n45eue39q6.apps.googleusercontent.com")
+        },
+      ]);
+  return config;
+}
+
 const appRoutes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
@@ -57,8 +80,8 @@ const appRoutes = [
   {path: 'order/:id', component: OrderdetailsComponent},
   {path: 'products/add', component: AddproductComponent},
   {path: 'profile/edit', component: EditprofileComponent},
-  {path: 'product/edit/:id', component: EditproductComponent}, 
-  {path: 'search/:keyword', component: SearchComponent},  
+  {path: 'product/edit/:id', component: EditproductComponent},
+  {path: 'search/:keyword', component: SearchComponent},
   {path: 'product/edit/:id', component: EditproductComponent},
   {path: 'product/list/:id', component: MyproductsComponent},
   {path: 'search/:keyword', component: HomeComponent},
@@ -85,7 +108,7 @@ const appRoutes = [
     LayoutComponent,
     ProductsCatComponent,
     ProductsSubCatComponent,
-    
+    ForgetPassComponent,
 
   ],
   imports: [
@@ -101,20 +124,25 @@ const appRoutes = [
     MatIconModule,
     MatInputModule,
     FormsModule,
-    MatGridListModule,    
+    MatGridListModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
     MatGridListModule,
-    MatExpansionModule        
+    MatExpansionModule,
+    AsyncLocalStorageModule,
+    SocialLoginModule,
+    NgbModule.forRoot(),
+    ReactiveFormsModule
   ],
-  providers: [LoginService, 
-              CategoriesService, 
+  providers: [LoginService,
+              CategoriesService,
               AddproductService,
-              EditproductService , 
+              EditproductService ,
               MyproductsService,
               CartService,
-              ProductsService              
+              ProductsService,
+              {provide: AuthServiceConfig,useFactory: getAuthServiceConfigs}
             ],
   bootstrap: [AppComponent]
 })

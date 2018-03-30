@@ -2,7 +2,7 @@
 .example-container{
   height: 100%;
 }
-.example-sidenav {   
+.example-sidenav {
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -18,9 +18,9 @@ h3{
 
 
 /* font Awesome http://fontawesome.io*/
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+/*@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);*/
 /* Animation.css*/
-@import url(https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css);
+/*@import url(https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css);*/
 
 .col-item {
   border: 1px solid #E1E1E1;
@@ -67,7 +67,7 @@ h3{
 .col-item .options-cart-round button {
   border-radius: 50%;
   padding:14px 16px;
-  
+
 }
 .col-item .options-cart-round button .fa {
   font-size:22px;

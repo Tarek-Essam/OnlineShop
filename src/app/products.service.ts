@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {Iproduct} from './Iproduct';
- 
+
 @Injectable()
 
 export class ProductsService {
@@ -16,7 +16,7 @@ export class ProductsService {
     return this.http.get<Iproduct[]>('http://localhost:9050/api/products/list/subcat'+subcat)
   }
   getProduct(productId):Observable<Iproduct>{
-    return this.http.get<Iproduct>('http://localhost:9050/api/products/'+productId);
+    return this.http.get<Iproduct>('https://localhost:9050/api/products/'+productId);
   }
 
 }

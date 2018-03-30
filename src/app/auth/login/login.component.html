@@ -1,3 +1,41 @@
-<p>
-  login works!
-</p>
+
+  <div *ngIf="!loggedIn" id="outer" class="container-fluid">
+      <div id="sub-outer" class="row">
+          <div class="col-md-12">
+              <div class="wrap">
+                  <p class="form-title">
+                      Sign In To <b class="fontfamily" style="color:yellow;font-size:120%">Shopify</b></p>
+                  <div class="login">
+                  <input #email type="email" placeholder="Email" required/>
+                  <input #pass type="password" placeholder="Password" required/>
+                  <input type="submit" value="Sign In" (click)="login(email.value , pass.value)" class="btn btn-success btn-sm" />
+                  <button class="btn btn-primary social-login-btn social-facebook" (click)="socialSignIn('facebook')"><img src="/assets/images/fb.png" width="30" height="30" style="display:inline" class="img-responsive img-circle"> Login With FaceBook</button>
+                  <button class="btn btn-danger social-login-btn social-google" (click)="socialSignIn('google')"><img src="/assets/images/g1.png" width="30" height="30" style="display:inline" class="img-responsive img-circle"> Login With Google+</button>
+                  <div *ngIf="notAuth" class="alert alert-danger box-msg" role="alert">
+                    <strong>Invalid Email Or Password Pleas Relogin !!</strong>
+                  </div>
+                  <app-register></app-register>
+                  <!-- <button class="btn btn-warning">Join Us Now</button> -->
+                  <div class="remember-forgot">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox" [checked]="keepMeLooged" (change)="keepMeLooged = !keepMeLooged" />
+                                      Remember Me
+                                  </label>
+                              </div>
+                          </div>
+                          <div class="col-md-6 forgot-pass-content">
+                            <app-forget-pass></app-forget-pass>
+                              <!-- <a class="forgot-pass" (click)="forgetPass = !forgetPass">Forgot Password!!</a> -->
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <button *ngIf="loggedIn" type="submit" name="button" (click)="logOut()">LogOut</button>
+  <!-- <app-home *ngIf="loggedIn"></app-home> -->

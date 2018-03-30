@@ -1,3 +1,101 @@
-<p>
-  register works!
-</p>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Register</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="userName">Name</label>
+          <input formControlName="userName" class="form-control" id="userName" type="text">
+          <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
+            <div *ngIf="username.errors.required">
+              username is Requierd!!
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Email</label>
+          <input formControlName="email" class="form-control" type="email" id="email">
+          <div *ngIf="email.pending">
+            cheking for email validation....!
+          </div>
+          <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+            <div *ngIf="email.errors.required">
+              email is Requierd!!
+            </div>
+            <div *ngIf="email.errors.validateEmailNotTaken">
+              server says email should be valid and Unique!
+            </div>
+            <div *ngIf="email.errors.pattern">
+              email should follow patteren example@example.example!!
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- <div class="row">
+
+        </div> -->
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="password">Password</label>
+          <input formControlName="password" class="form-control" type="password" id="password">
+          <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+            Password Is Required!!
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="password2">Re-Password</label>
+          <input formControlName="password2" class="form-control" type="password" id="password2">
+          <div *ngIf="password2.touched && password2.invalid" class="alert alert-danger">
+            The Password Doesn't match
+          </div>
+        </div>
+      </div>
+        <!-- <div class="row">
+
+        </div> -->
+        <div class="row">
+          <div class="form-group col-md-6 col-md-offset-3">
+            <label for="address">Address</label>
+            <input formControlName="address" class="form-control" type="text" id="address">
+            <div *ngIf="address.touched && address.invalid" class="alert alert-danger">
+              Address is required for shipping!
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="Image">Image</label>
+            <input type="file" accept="image/*" (change)="changeListener($event)" placeholder="Upload file..." />
+          </div>
+        </div>
+        <div *ngIf="openSellerField" class="row">
+          <div class="form-group col-md-6 col-md-offset-3">
+            <label for="nationalID">National ID</label>
+            <input formControlName="nationalID" class="form-control" type="text" id="nationalID">
+            <div *ngIf="nationalID.touched && nationalID.invalid" class="alert alert-danger">
+              <div *ngIf="nationalID.errors.required">
+                National ID is Requierd!!
+              </div>
+              <div *ngIf="nationalID.errors.minlength">
+                the minimum legnth is {{ nationalID.errors.minlength.requiredLength }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-9 col-md-offset-4">
+            <button class="btn btn-warning col-md-offse-6" (click)="sellerClicked()" type="button">Sell With Us Now</button>
+            <button *ngIf="!nationalID.invalid && !password2.invalid && !password.invalid && !email.invalid && !username.invalid && !address.invalid"
+            class="btn btn-primary pull-left" type="submit">Sign Up</button>
+          </div>
+        </div>
+    </form>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+<button class="btn btn-warning" (click)="open(content)">Join Us Now</button>
