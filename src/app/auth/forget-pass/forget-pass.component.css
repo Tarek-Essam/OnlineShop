@@ -1,0 +1,9 @@
+a:not([href]):not([tabindex]){
+  color:#2a7a03;
+}
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
+  transition: color 0.5s ease;
+}
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
+  color: #2ecc71;
+}

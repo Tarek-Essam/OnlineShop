@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Allerta Stencil", Sans-serif;
+}
+.modal-content {
+    top: 10px;
+    background-color: rgba(18,83,104, 0.9);
+    position: fixed;
+}
+
+.modal-title{
+  color: antiquewhite;
+}
+.btn:not(:disabled):not(.disabled){
+  color: antiquewhite;
+}
+
+
+
+div.login .btn-warning
+{
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 16px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+div.login .btn-warning:hover
+{
+    transition: background-color 0.5s ease;
+}
+.fontfamily{
+  font-family: "Allerta Stencil", Sans-serif;
+}

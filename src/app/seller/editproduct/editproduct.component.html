@@ -1,3 +1,37 @@
-<p>
-  editproduct works!
-</p>
+
+<!-- <form  style="border:1px solid #ccc;width:60%;margin: auto;  "> -->
+  <div class="container">
+    <h1>Edit Product</h1>
+    <p>Please fill in this form to add an product .</p>
+    <hr>
+<table>
+  <tr>
+    <td>  <label for="productName" ><b>Product Name</b></label>
+      <input type="text" [(ngModel)]="model.name" placeholder="Enter Name" #name = "ngModel" required>
+</td>
+    <td><img src="{{model.img}}" alt="" width="300" height="300"/></td>
+  </tr>
+</table>
+
+    <label for="productPrice"><b>Product Price</b></label>
+    <input type="text" [(ngModel)]="model.price" placeholder="Enter price" #price = "ngModel" required>
+
+    <label for="pcs"><b>avaliable pcs</b></label>
+    <br><input type="number" [(ngModel)]="model.stock" placeholder="Enter number" #pcs = "ngModel" required>
+
+    <br><label for="productDesc"><b>Product Decscription</b></label>
+    <input type="text" [(ngModel)]="model.desc" placeholder="Enter desc" #desc = "ngModel" required>
+    <select name="" id="" class="form-control" [(ngModel)]="model.subcat">
+      <option value="{{subcat.name}}" *ngFor="let subcat of subcats">{{subcat.name}}</option>
+    </select>
+    <br>
+    <input type="file" class="form-control"  name="image" id="image" (ngModel)="model.img" #uimage = "ngModel"
+  (change)="fileUpload(uimage.files)" >
+<!-- [(nv-file-select)] uploader="model.image"  -->
+    <span style="color:red"><h3>{{res?.result}}{{res?.message}}</h3></span>
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="submit" (click)="addProduct()">EDIT</button>
+    </div>
+  </div>
+<!-- </form> -->

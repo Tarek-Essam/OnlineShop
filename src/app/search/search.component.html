@@ -1,3 +1,69 @@
-<p>
-  search works!
-</p>
+<mat-sidenav-container class="example-container">
+
+  <mat-sidenav mode="side" opened class="example-sidenav">
+    <h3>Category</h3>
+    <div *ngFor="let subcat of subcats" id="{{subcat._id}}">
+      <mat-checkbox (click)="catFilter($event,subcat.name)" >
+        {{subcat.name}}
+      </mat-checkbox>
+    </div>
+    <h3>Price</h3>
+    <div>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="From" name="priceFrom" min="0" step="500" max="{{priceTo}}" type="number" (input)="filter()"  [(ngModel)]="priceFrom">
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="To" name="priceTo" step="500" min="{{priceFrom}}" type="number" (input)="filter()"  [(ngModel)]="priceTo">
+              </mat-form-field>
+          </form>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- <mat-grid-list cols="4" rowHeight="2:1">
+     
+      <mat-grid-tile *ngFor="let product of matched">
+                 <p>{{product.name}}</p> 
+                 <button mat-raised-button (click)="addToCart(product._id)">Add To Cart</button>
+                 <img src="{{product.img}}" alt="" width="100" height="150">
+      </mat-grid-tile>
+    </mat-grid-list> -->
+    <div class="container">
+        <div class="row">
+              <h2>Found {{matched.length}} Product matching "{{keyword}}"</h2>
+              <!-- <p>
+                  This snippent uses <a href="http://daneden.github.io/animate.css/" target="_blank">Animate.css</a> for the animation of the buttons.
+              </p> -->
+              <div class="col-sm-3" *ngFor="let product of matched">
+                  <article class="col-item">
+                    <div class="photo">
+                    <div class="options-cart-round">
+                      <button (click)="addToCart(product._id)" class="btn btn-default" title="Add to cart">
+                        <span class="fa fa-shopping-cart"></span>
+                      </button>
+                    </div>
+                    <a href="#"> <img src="{{product.img}}" class="img-responsive" alt="Product Image" /> </a>
+                  </div>
+                  <div class="info">
+                    <div class="row">
+                      <div class="price-details col-md-6">
+                        <p class="details">
+                          {{product.desc}}
+                        </p>
+                        <h1>{{product.name}}</h1>
+                        <span class="price-new">EPG {{product.price}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                  <!-- <p class="text-center">Hover over image</p> -->
+              </div>
+              
+        </div>
+      </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container> 
+
