@@ -1,9 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
 import { LoginService } from './login.service';
+import { OrderService } from './seller/orders/order.service';
+import { OrderDetailsService } from './seller/orderdetails/order-details.service';
 import { CategoriesService } from './categories.service';
 
 import { AppComponent } from './app.component';
@@ -22,6 +27,7 @@ import { EditproductComponent } from './seller/editproduct/editproduct.component
 import { SearchComponent } from './search/search.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes = [
   {path: '', component: HomeComponent},
@@ -57,14 +63,18 @@ const appRoutes = [
     EditproductComponent,
     SearchComponent,
     HeaderComponent,
-    SidebarComponent,    
+    SidebarComponent,  
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    HttpModule,
+    HttpHeaders,
+    HttpResponse,
+    FormsModule  
   ],
-  providers: [LoginService, CategoriesService],
+  providers: [LoginService, CategoriesService, OrderService , OrderDetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
