@@ -16,7 +16,7 @@
 <div class="row">
     
   <div class="col-s-3">
-      <img class="rounded" id="main-img" src={{order.products[0].img}} />
+      <img class="rounded" id="main-img" src={{orderdetails.products[0].img}} />
       
     </div>
 
@@ -45,7 +45,7 @@
     <div class="card" *ngFor="let product of orderdetails.products">
         <div class="row">
         <div class="col-md-3">
-        <img class="card-img-left" src="https://www.gravatar.com/avatar/tee.fouad@gmail.com" />
+        <img class="card-img-left" src={{product.img}} />
         </div>
         <div class="col-md-6">    
         <div class="card-info">
