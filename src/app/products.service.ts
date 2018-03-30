@@ -9,8 +9,11 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts():Observable<Iproduct[]>{
-    return this.http.get<Iproduct[]>('http://localhost:9050/api/products');
+  getProductsByCat(category):Observable<Iproduct[]>{
+    return this.http.get<Iproduct[]>('http://localhost:9050/api/products/list/'+category);
+  }
+  getProductsBySubCat(subcat):Observable<Iproduct[]>{
+    return this.http.get<Iproduct[]>('http://localhost:9050/api/products/list/subcat'+subcat)
   }
   getProduct(productId):Observable<Iproduct>{
     return this.http.get<Iproduct>('http://localhost:9050/api/products/'+productId);

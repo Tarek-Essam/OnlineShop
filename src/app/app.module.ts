@@ -42,12 +42,15 @@ import { EditprofileComponent } from './auth/editprofile/editprofile.component';
 import { EditproductComponent } from './seller/editproduct/editproduct.component';
 import { SearchComponent } from './search/search.component';
 import { LayoutComponent } from './layout/layout.component';
+import { ProductsCatComponent } from './products-cat/products-cat.component';
+import { ProductsSubCatComponent } from './products-sub-cat/products-sub-cat.component';
 
 const appRoutes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'products', component: ProductsComponent},
+  {path: 'products/:cat', component: ProductsCatComponent},
+  {path: 'products/cat/:subcat', component: ProductsSubCatComponent},
   {path: 'cart', component: CartComponent},
   {path: 'product/:id', component: ProductComponent},
   {path: 'orders', component: OrdersComponent},
@@ -80,6 +83,8 @@ const appRoutes = [
     EditproductComponent,
     SearchComponent,
     LayoutComponent,
+    ProductsCatComponent,
+    ProductsSubCatComponent,
     
 
   ],
