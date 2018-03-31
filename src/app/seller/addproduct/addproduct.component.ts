@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AddproductService } from '../../addproduct.service';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from '../../categories.service';
+import { LoginService } from '../../login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,9 +15,10 @@ export class AddproductComponent implements OnInit {
 
   form: FormGroup;
   loading: boolean = false;
-  subcats;
-  res;
-
+  subcats:any;
+  res:any;
+  userInfo:any;
+  userID:any;
   model = {
     productName: '',
     productPrice: '',
@@ -23,37 +26,52 @@ export class AddproductComponent implements OnInit {
     productDesc: '',
     image: '',
     subcat:'',
-    userId : '5abbf3cb87843c4931fda0b2'
+    offer:'',
+    userId : `${this.userID}`
   };
 
   @ViewChild('fileInput') fileInput: ElementRef;
   // private AddproductService: AddproductService
-  constructor(private AddproductService: AddproductService, 
-              private categoriesService: CategoriesService) {
+  constructor(private AddproductService: AddproductService,
+              private categoriesService: CategoriesService,
+              private loginSer: LoginService,
+              private router : Router
+            ) {
     this.categoriesService.getSubcats().subscribe((res) => {
       this.subcats = res;
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // console.log(window.location.href.split('/'));
+    this.loginSer.getUserInfo().subscribe((res)=>{
+      // this.userInfo = res;
+      // console.log(this.userInfo)
+      var {user} = res;
+      this.userInfo = user;
+      if (this.userInfo.userType == "seller") {
+          this.userID = this.userInfo.id;
+      }
+      else{
+        this.router.navigate(["/"]);
+      }
+    })
+ }
 
   addProduct() {
     this.AddproductService.addproduct(this.model).subscribe(res => {
-      console.log(res);
       this.res = res.json();
     });
     //console.log(this.model);
   }
 
   fileUpload(files) {
-    console.log(files[0]);
     var picture = files[0];
     var myReader: FileReader = new FileReader();
     myReader.readAsDataURL(picture);
     myReader.onloadend = (e) => {
       this.model.image = myReader.result;
-      console.log(this.model.image);
     }
-  
+
   }
 }

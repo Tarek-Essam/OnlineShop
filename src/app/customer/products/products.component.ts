@@ -18,13 +18,13 @@ export class ProductsComponent implements OnInit {
 
   constructor(private _productsService: ProductsService,private route:Router) { }
 
-  // ngOnInit() {
-  //   this._productsService.getProducts().subscribe(data=>{
-  //     this.products = data;
-  //     this.shownProducts=this.products.slice(0,5) 
-  //     }
-  //   )
-  // }
+  ngOnInit() {
+    this._productsService.getProducts().subscribe(data=>{
+      this.products = data;
+      this.shownProducts=this.products.slice(0,5) 
+      }
+    )
+  }
  
 
   pageChanged(event:PageChangedEvent):void{

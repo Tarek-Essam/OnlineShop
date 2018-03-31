@@ -1,15 +1,15 @@
 <mat-sidenav-container class="example-container">
-	<mat-sidenav #sidenav class="nav" mode="push">		
+	<mat-sidenav #sidenav class="nav" mode="push">
 		<!-- //////////////////// -->
 		<mat-accordion>
 			<mat-expansion-panel *ngFor="let cat of cats">
 				<mat-expansion-panel-header>
 					<mat-panel-title>
 						{{ cat.name }}
-					</mat-panel-title>					
+					</mat-panel-title>
 				</mat-expansion-panel-header>
-				<a href="#" mat-button *ngFor="let subcat of cat.subcat" style="display:block">{{ subcat.name }}</a>	
-			</mat-expansion-panel>			
+				<a href="#" mat-button *ngFor="let subcat of cat.subcat" style="display:block">{{ subcat.name }}</a>
+			</mat-expansion-panel>
 		</mat-accordion>
 
 		<!-- //////////////////// -->
@@ -20,7 +20,7 @@
 
 			<mat-toolbar-row>
 				<mat-icon (click)="sidenav.toggle()" style="cursor:pointer">list</mat-icon>
-				<a routerLink="/" routerLinkActive="active"><span>Purchase</span></a> 
+				<a routerLink="/" routerLinkActive="active"><span>Purchase</span></a>
 				<!-- search bar -->
 				<div class="container">
 
@@ -54,7 +54,8 @@
 						</div>
 					</div>
 				</div>
-			
+				<a routerLink="/logout" routerLinkActive="Active" type="butoon" name="button">LogOut</a>
+
 			</mat-toolbar-row>
 
 			<mat-toolbar-row >

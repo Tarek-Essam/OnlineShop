@@ -38,23 +38,3 @@
     float: right;
 
   }
-
-  #price {
-    font-size: 24px;    
-    float: right;
-  }
-
-  .footer-raw{
-    text-align: center;
-    align-content: center;
-
-  }
-
-  .card {
-    background: #f7f7f7;
-    background-color: white;
-  }
-
-  .card-footer {
-    background-color: white;
-  }

@@ -1,26 +1,26 @@
-<div *ngIf="!loggedIn" *ngFor="let pro of products" href="#" id={{pro._id}} style="padding:15px" className='card'>
-<table style="width:95%; border : 1px;" >
-  <tr>
-    <td> <img src="{{pro.img}}" alt="myproducts"> </td>
-    <td>
-      <tr>
-      <p>Item Name : {{pro.name}}</p>
-    </tr>
-    <tr className='card'>
-      <p>Item Description : {{pro.desc}}</p>
-    </tr>
-  </td>
-    <td>
-      <tr>
-        <p>{{pro.price}}   LE </p>
+<div *ngFor="let pro of products" href="#" id={{pro._id}} style="padding:15px" className='card'>
+  <table style="width:95%; border : 1px;" >
+    <tr>
+      <td> <img src="{{pro.img}}" alt="myproducts"> </td>
+      <td>
+        <tr>
+        <p>Item Name : {{pro.name}}</p>
       </tr>
-      <tr>
-          <p> Avaliable : {{pro.pcs}}</p>
-      </tr>
-      <tr>
-        <button type="button" name="button"> Edit product </button>
+      <tr className='card'>
+        <p>Item Description : {{pro.desc}}</p>
       </tr>
     </td>
-  </tr>
-</table>
-</div>
+      <td>
+        <tr>
+          <p>{{pro.price}}   LE </p>
+        </tr>
+        <tr>
+            <p> Avaliable : {{pro.pcs}}</p>
+        </tr>
+        <tr>
+          <button type="button" name="button" routerLink="/product/edit/{{pro._id}}"> Edit product </button>
+        </tr>
+      </td>
+    </tr>
+  </table>
+  </div>

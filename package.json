@@ -16,18 +16,19 @@
     "@angular/cdk": "^5.2.4",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
-<<<<<<< HEAD
-    "@angular/core": "^5.2.9",
-    "@angular/forms": "^5.2.0",
-=======
     "@angular/core": "^5.2.0",
     "@angular/forms": "^5.2.9",
->>>>>>> 53eba8919e720bccbb4f7c20ee48b18bad2de9a7
     "@angular/http": "^5.2.0",
     "@angular/material": "^5.2.4",
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "bootstrap": "^4.0.0",
+    "core-js": "^2.4.1",
+    "jquery": "^3.3.1",
+    "ngx-bootstrap": "^2.0.3",
+    "rxjs": "^5.5.6",
+    "zone.js": "^0.8.19",
     "@cloudinary/angular-5.x": "^1.0.1",
     "@ng-bootstrap/ng-bootstrap": "^1.0.4",
     "angular-async-local-storage": "^3.1.1",
@@ -35,21 +36,11 @@
     "angular-bootstrap-md": "^5.2.3",
     "angular-localstorage": "^1.1.5",
     "angular5-social-login": "^1.0.9",
-    "bootstrap": "^4.0.0",
     "browser-sync": "^2.23.6",
     "chart.js": "^2.5.0",
     "cloudinary-core": "^2.5.0",
-    "core-js": "^2.4.1",
-<<<<<<< HEAD
-    "ngx-paginate": "^1.0.5",
-=======
     "font-awesome": "^4.7.0",
-    "hammerjs": "^2.0.8",
-    "jquery": "^3.3.1",
-    "ngx-bootstrap": "^2.0.3",
->>>>>>> 53eba8919e720bccbb4f7c20ee48b18bad2de9a7
-    "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "hammerjs": "^2.0.8"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.3",

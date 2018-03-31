@@ -49,7 +49,7 @@
         <div class="form-group col-md-6">
           <label for="password2">Re-Password</label>
           <input formControlName="password2" class="form-control" type="password" id="password2">
-          <div *ngIf="password2.touched && password2.invalid" class="alert alert-danger">
+          <div *ngIf="password2.touched && password2.invalid && password2.errors.mismatch" class="alert alert-danger">
             The Password Doesn't match
           </div>
         </div>

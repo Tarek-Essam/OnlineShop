@@ -10,27 +10,25 @@ import { LoginService } from '../../login.service';
 })
 export class MyproductsComponent implements OnInit {
    sellerId;
-  loggedIn : boolean = false;
-  pro = {};
+   loggedIn : boolean = true;
+   products;
 
-    constructor(private MyproductsService: MyproductsService, private loginSer: LoginService) { }
+    constructor(private myproductsService: MyproductsService, private loginSer: LoginService) { }
 
     ngOnInit() {
-      this.loginSer.getUserInfo().subscribe((res : any) => {
-        if(res){
-          this.loggedIn = true;
-          console.log(res);
-          this.sellerId = res._id.json();
-          console.log(this.sellerId);
-        }else{
-          this.loggedIn = false;
-        }
-      });
+      // this.loginSer.getUserInfo().subscribe((res : any) => {
+      //   if(res){
+      //     this.loggedIn = true;
+      //     console.log(res);
+      //     this.sellerId = res._id.json();
+      //     console.log(this.sellerId);
+      //   }else{
+      //     this.loggedIn = false;
+      //   }
+      //});
 
-      this.MyproductsService.getmyproducts(this.sellerId).subscribe(res => {
-        console.log(res);
-        this.pro = res;
-        console.log(this.pro);
+      this.myproductsService.getmyproducts("5abe351841c8533315963a5a").subscribe(res => {
+        this.products = res;
       });
     }
 

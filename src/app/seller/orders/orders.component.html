@@ -1,35 +1,3 @@
-<div class="container">
-
-  <div *ngIf="error" class="row" style="border:1px; color:red;">
-    <p>there is no items </p>
-  </div>
-  <div class="card" *ngFor="let order of orders">
-    <div class="row">
-    <div class="col-md-3">
-    <img class="card-img-left" src={{order.products[0].img}} />
-    </div>
-    <div class="col-md-6">    
-    <div class="card-info">
-      <h1><a href="#">{{ order.products[0].name }}</a></h1>
-      <label>{{ order.products.length }} items </label>
-      <label id="price">{{ order.total }} LE </label>
-      <p>{{order.products[0].desc}}</p>
-    </div>
-    </div>
-  </div>
-  <div class="card-footer">
-      {{ order.time }}
-      <a routerLink="/order/5ab782e22b4d4d2c83466324" class="btn btn-primary btn-lg" role="button" aria-pressed="true">show details</a>
-    </div>
-  </div>
-
-<div class="center" style="text-align:center;">
-  <nav aria-label="...">
-    <ul class="pagination">
-      <li *ngFor="let item of pages" class="page-item " >
-        <a class="page-link" style="color:blue"  tabindex="-1" (click)="changePage($event)">{{item}}</a>
-      </li>
-    </ul>
-  </nav>
-</div>
-</div>
+<p>
+  orders works!
+</p>

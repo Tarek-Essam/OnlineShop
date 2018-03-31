@@ -111,4 +111,9 @@ readThis(inputValue: any): void {
   myReader.readAsDataURL(file);
 }
 
+checkIfMatchingPasswords() {
+   this.form.get('password').value === this.form.get('password2').value
+   ? null : this.form.get('password2').setErrors({mismatch:true});
+ }
+
 }

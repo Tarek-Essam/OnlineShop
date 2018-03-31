@@ -5,6 +5,7 @@ import {AbstractControl, ValidationErrors} from '@angular/forms';
 import { Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Injectable()
@@ -14,15 +15,25 @@ password:string;
 userData: object;
 userToken: any;
 private userInfoToUse: object;
+public replay:ReplaySubject<any> = new ReplaySubject(1);
   constructor(private http: HttpClient , protected storage: AsyncLocalStorage ) {}
 
   getUserInfo(){
-    return this.userInfoToUse;
+    // return this.userInfoToUse;
+    this.storage.getItem('token').subscribe((res:any)=>{
+      var headers = new HttpHeaders({'content-Type': 'application/json'});
+      headers = headers.append('token', res);
+      this.http.get('https://localhost:9050/api/authenticate', {headers: headers}).subscribe((result)=>{
+        this.replay.next(result);
+      });
+    })
+    return this.replay;
   }
 
-  setUserInfo(info : object){
-    this.userInfoToUse = info;
-  }
+  // setUserInfo(){
+  //   // this.userInfoToUse = info;
+  //
+  // }
 
   onStartLogIn(token){
     var headers = new HttpHeaders({'content-Type': 'application/json'});
@@ -69,6 +80,11 @@ private userInfoToUse: object;
     resetPassword(newUserData){
       let userData = JSON.stringify(newUserData);
       return this.http.put('https://localhost:9050/api/user/forgetpass', userData ,{headers:{'Content-Type': 'application/json'}});
+    }
+
+    updateUser(userUpdatedData , userID){
+      let userObj = JSON.stringify(userUpdatedData);
+      return this.http.put(`https://localhost:9050/api/user/${userID}`, userObj ,{headers:{'Content-Type': 'application/json'}});
     }
 
 }

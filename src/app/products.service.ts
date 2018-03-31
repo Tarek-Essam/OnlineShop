@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {Iproduct} from './Iproduct';
 
@@ -9,14 +9,17 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  getProductsByCat(category):Observable<Iproduct[]>{
-    return this.http.get<Iproduct[]>('http://localhost:9050/api/products/list/'+category);
-  }
-  getProductsBySubCat(subcat):Observable<Iproduct[]>{
-    return this.http.get<Iproduct[]>('http://localhost:9050/api/products/list/subcat'+subcat)
+  getProducts():Observable<Iproduct[]>{
+    return this.http.get<Iproduct[]>('https://localhost:9050/api/products');
   }
   getProduct(productId):Observable<Iproduct>{
     return this.http.get<Iproduct>('https://localhost:9050/api/products/'+productId);
+  }
+
+  getProductsWithOffers(){
+    var headers = new HttpHeaders({'content-Type': 'application/json'});
+    headers = headers.append('offers', "offers");
+    return this.http.get('https://localhost:9050/api/products', {headers: headers});
   }
 
 }

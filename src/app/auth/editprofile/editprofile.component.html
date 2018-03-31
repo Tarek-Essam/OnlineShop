@@ -1,3 +1,89 @@
-<p>
-  editprofile works!
-</p>
+<div *ngIf="isAuthToEdit" class="container">
+    <div class="row jumbotron">
+  </div>
+    <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="userName">Name</label>
+          <input formControlName="userName" class="form-control" id="userName" type="text">
+          <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
+            <div *ngIf="username.errors.required">
+              username is Requierd!!
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Email</label>
+          <input formControlName="email" class="form-control" type="email" id="email">
+          <div *ngIf="email.pending">
+            cheking for email validation....!
+          </div>
+          <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+            <div *ngIf="email.errors.required">
+              email is Requierd!!
+            </div>
+            <div *ngIf="email.errors.validateEmailNotTaken">
+              server says email should be valid and Unique!
+            </div>
+            <div *ngIf="email.errors.pattern">
+              email should follow patteren example@example.example!!
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="password">Password</label>
+          <input formControlName="password" class="form-control" type="password" id="password">
+          <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+            Password Is Required!!
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="password2">Re-Password</label>
+          <input formControlName="password2" (change)="checkIfMatchingPasswords()" class="form-control" type="password" id="password2">
+          <div *ngIf="password2.touched && password2.invalid && password2.errors.mismatch" class="alert alert-danger">
+            The Password Doesn't match
+          </div>
+        </div>
+      </div>
+        <!-- <div class="row">
+
+        </div> -->
+        <div class="row">
+          <div class="form-group col-md-6 col-md-offset-3">
+            <label for="address">Address</label>
+            <input formControlName="address" class="form-control" type="text" id="address">
+            <div *ngIf="address.touched && address.invalid" class="alert alert-danger">
+              Address is required for shipping!
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="Image">Image</label>
+            <input type="file" accept="image/*" (change)="changeListener($event)" placeholder="Upload file..." />
+            <img *ngIf="displayImage" class="img-responsive" src="{{ perviewImage }}" width="50" height="80"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-9 col-md-offset-4">
+            <button *ngIf="!password2.invalid && !password.invalid && !email.invalid && !username.invalid && !address.invalid"
+            class="btn btn-primary pull-left col-md-4" type="submit">Edit</button>
+          </div>
+          <div *ngIf="submitted && updated" class="col-md-6 alert alert-success">
+            Your Profile HaveBeen Updated!!
+          </div>
+          <div *ngIf="submitted && !updated" class="col-md-6 alert alert-danger">
+            an Error Occured While updating Your Data!!
+          </div>
+        </div>
+
+    </form>
+</div>
+<div *ngIf="!isAuthToEdit" class="container">
+  <div class="alert alert-danger">
+    <h3>Sorry You Are Not Authorized to Edit Profile Data.</h3>
+    <h4>Pleas Login and Try Again</h4>
+  </div>
+</div>

@@ -1,4 +1,16 @@
 .carousel-inner img{
-  width:100%;
+  width:80%;
   height: 250px;
+}
+
+.container-fluid h3{
+  /*background-color: rgba(18,83,104, 0.4);*/
+  color: #ff9900;
+}
+.container-fluid h4{
+  /*background-color: rgba(18,83,104, 0.4);*/
+  color: #ff9900;
+}
+.carousel-item {
+  text-align: center;
 }

@@ -3,6 +3,7 @@ import { Component , OnInit , HostListener } from '@angular/core';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { RegisterComponent } from '../register/register.component';
 import { LoginService } from '../../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,12 @@ export class LoginComponent implements OnInit {
   private userSocialData : object;
   private forgetPass : boolean = false;
 
-  constructor(private loginSer: LoginService , protected storage: AsyncLocalStorage , private socialAuthService: AuthService){ }
+  constructor(private router : Router,private loginSer: LoginService , protected storage: AsyncLocalStorage , private socialAuthService: AuthService){
+    var newURL = window.location.href.split('/');
+    if(newURL[newURL.length - 1] == 'logout'){
+      this.logOut();
+    }
+  }
 
   ngOnInit(){
     this.storage.getItem('token').subscribe(
@@ -31,7 +37,7 @@ export class LoginComponent implements OnInit {
           this.loginSer.onStartLogIn(res).subscribe((result : any) => {
             if(result.logIn == "Login Now"){
               this.loggedIn = true;
-              this.loginSer.setUserInfo(result.user);
+              this.router.navigate(["/"]);
             }},
             (err : any) => {this.loggedIn = false})}
             else{
@@ -44,7 +50,7 @@ export class LoginComponent implements OnInit {
     this.loginSer.getToken(email , pass).subscribe((res: any)=>{
       if (res.resp != "invalid username and password") {
         this.tokenObj = res;
-        this.loginSer.setUserInfo(res.user);
+        this.router.navigate(["/"]);
         this.storage.setItem('provider',`${this.tokenObj.resp}`).subscribe(() => {this.loggedIn = true});
         this.storage.setItem('token',`${this.tokenObj.token}`).subscribe(() => {this.loggedIn = true});
       }
@@ -57,15 +63,13 @@ export class LoginComponent implements OnInit {
         // logOut from local login and social as well
     logOut(){
       if (this.userSocialData) {
-        this.storage.removeItem('token').subscribe(() => {this.loggedIn = false}, (err) => {console.log(err)});
-        this.storage.removeItem('provider').subscribe(() => {this.loggedIn = false}, (err) => {console.log(err)});
-        this.loginSer.setUserInfo({});
+        this.storage.removeItem('token').subscribe(() => {this.loggedIn = false;this.router.navigate(["/login"]);}, (err) => {console.log(err)});
+        this.storage.removeItem('provider').subscribe(() => {this.loggedIn = false;this.router.navigate(["/login"]);}, (err) => {console.log(err)});
         this.socialAuthService.signOut();
       }
       else{
-        this.loginSer.setUserInfo({});
-        this.storage.removeItem('token').subscribe(() => {this.loggedIn = false}, (err) => {console.log(err)});
-        this.storage.removeItem('provider').subscribe(() => {this.loggedIn = false}, (err) => {console.log(err)});
+        this.storage.removeItem('token').subscribe(() => {this.loggedIn = false;this.router.navigate(["/login"]);}, (err) => {console.log(err)});
+        this.storage.removeItem('provider').subscribe(() => {this.loggedIn = false;this.router.navigate(["/login"]);}, (err) => {console.log(err)});
       }
         this.loggedIn = false;
     }
@@ -91,9 +95,9 @@ export class LoginComponent implements OnInit {
           this.loginSer.getSocialToken(this.userSocialData).subscribe((res: any)=>{
             if (res.resp != "invalid username and password") {
               this.tokenObj = res;
-              this.loginSer.setUserInfo(res.user);
               this.storage.setItem('provider',`${this.tokenObj.resp}`).subscribe(() => {this.loggedIn = true});
               this.storage.setItem('token',`${this.tokenObj.token}`).subscribe(() => {this.loggedIn = true});
+              this.router.navigate(["/"]);
             }
             else{
               this.loggedIn = false;
