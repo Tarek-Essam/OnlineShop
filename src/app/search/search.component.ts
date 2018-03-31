@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CategoriesService } from '../categories.service';
 import { CartService } from '../cart.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
     selector: 'app-search',
@@ -17,12 +18,14 @@ export class SearchComponent implements OnInit {
     priceFrom = 0;
     priceTo = 20000;
     originalProducts = [];
+    userId;
 
     constructor(
         private categoriesService: CategoriesService,
         private route: ActivatedRoute,
         private router: Router,
-        private cartservice: CartService
+        private cartservice: CartService,
+        private loginservice: LoginService
     ) {
         this.route.params.subscribe((params: Params) => {
             this.keyword = params.keyword;
@@ -82,10 +85,20 @@ export class SearchComponent implements OnInit {
         }
     }
 
-    addToCart(id){
-        this.cartservice.addToCart(id).subscribe((err) => {
-            
+    addToCart(id) {
+        this.loginservice.getUserInfo().subscribe((res) => {
+            var { user } = res;
+            this.userId = user.id;
+            if (user.userType == "customer") {
+                this.cartservice.addToCart(id, this.userId).subscribe((err) => {
+
+                });
+            }else{
+                this.router.navigate(['/login']);
+            }
+
         });
+
     }
 }
 

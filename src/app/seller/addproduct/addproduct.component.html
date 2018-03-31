@@ -30,7 +30,7 @@
     <input type="file" class="form-control"  name="image" id="image" #uimage
  (change)="fileUpload(uimage.files)" >
 <!-- ng-file-select="onFileSelect($files)" -->
-     <span style="color:red"><h3>{{res?.result}}{{res?.errors?.price.message}}</h3></span>
+     <!-- <span style="color:red"><h3>{{res?.result}}{{res?.errors?.price.message}}</h3></span> -->
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
       <button type="submit" class="submit" (click)="addProduct()">ADDD</button>

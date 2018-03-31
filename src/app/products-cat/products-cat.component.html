@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <!-- <div *ngFor="let product of products">
+    <h1>{{product.name}}</h1>
+  </div> -->
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let product of products">
+              <div class="thumbnail">
+               <a routerLink="/product/{{product._id}}" routerLinkActive="active"><img src="{{product.img}}" alt="" class="img-responsive"></a> 
+                <div class="caption">
+                  <h4 class="pull-right">EPG {{product.price}}</h4>
+                  <h4><a href="#">{{product.name}}</a></h4>
+                  <p>{{product.desc}}</p>
+                </div>
+                <div class="ratings">
+                  <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                     (avg. ratring)
+                  </p>
+                </div>
+                <div class="space-ten"></div>
+                <div class="btn-ground text-center">
+                    <button type="button" class="btn btn-primary" (click)="addToCart(product._id)"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Quick View</button>
+                </div>
+                <div class="space-ten"></div>
+              </div>
+            </div>           
+    </div>
+</div>

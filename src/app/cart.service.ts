@@ -7,9 +7,9 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
 
-  addToCart(id){
+  addToCart(id, userid){
     let headers = new HttpHeaders({'Content-Type':  'application/json'});
-    return this.http.post('https://localhost:9050/api/cart', JSON.stringify({productId:id, userId:"5abbddadd7d89f3f6b4ee168"}),{headers: headers});
+    return this.http.post('https://localhost:9050/api/cart/add', JSON.stringify({productId:id, userId:userid}),{headers: headers});
   }
 
   getCart(id){
@@ -21,9 +21,20 @@ export class CartService {
   }
 
   checkoutOrder(order){
-    console.log(order);
+    console.log(order);    
+    let headers = new HttpHeaders({'Content-Type':  'application/json'});
+    return this.http.post('https://localhost:9050/api/cart/checkout', JSON.stringify(order), {headers: headers});
+  }
+
+  addOrder(order){
     let headers = new HttpHeaders({'Content-Type':  'application/json'});
     return this.http.post('https://localhost:9050/api/orders/add', JSON.stringify(order), {headers: headers});
   }
 
+  emptyCart(userId){
+    let headers = new HttpHeaders({'Content-Type':  'application/json'});
+    return this.http.delete('https://localhost:9050/api/cart/'+userId);
+
+  }
+  
 }

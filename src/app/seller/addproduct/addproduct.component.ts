@@ -27,7 +27,7 @@ export class AddproductComponent implements OnInit {
     image: '',
     subcat:'',
     offer:'',
-    userId : `${this.userID}`
+    userId : ''
   };
 
   @ViewChild('fileInput') fileInput: ElementRef;
@@ -43,14 +43,21 @@ export class AddproductComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(window.location.href.split('/'));
+    //console.log(window.location.href.split('/'));
     this.loginSer.getUserInfo().subscribe((res)=>{
       // this.userInfo = res;
-      // console.log(this.userInfo)
-      var {user} = res;
-      this.userInfo = user;
+       console.log(res)
+      //var user = res.user;
+      // console.log(this.userInfo);
+      this.userInfo = res.user;
+      this.userID = res.user.id;
+      // console.log(this.userInfo);
+      
       if (this.userInfo.userType == "seller") {
-          this.userID = this.userInfo.id;
+          this.model.userId = this.userID;
+          // this.userID = this.userInfo.id;
+        console.log(this.userID);
+          
       }
       else{
         this.router.navigate(["/"]);

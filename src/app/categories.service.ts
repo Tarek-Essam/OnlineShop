@@ -17,7 +17,5 @@ export class CategoriesService {
   getSubcats(){
     return this.http.get('https://localhost:9050/api/subcat');
 
-  }
-
-
+  } 
 }

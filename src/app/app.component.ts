@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { CategoriesService } from './categories.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +6,37 @@ import { CategoriesService } from './categories.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  keyword;
-  shouldRun = true;
-  
-  // @ViewChild(search)
 
-  constructor(private categoriesService: CategoriesService) { }
+  hide = false;
+  hideLogin = true;
+  hideRegister = true;
+  hideLayout = false;
 
-  getKeyword($event){
-    this.keyword = $event;
-    console.log(this.keyword);
-    
+  login(e){
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhh");
+    if(e == "remove"){
+      this.hide = true;
+      this.hideLogin = false;
+      this.hideLayout = true;
+    }else{
+      this.hide = false;
+      this.hideLogin = true;
+      this.hideLayout = false;
+    }    
+   
   }
- 
+
+  register(e){
+    console.log(e);
+    if(e == "remove"){
+      this.hide = true;
+      this.hideRegister = false;
+      this.hideLayout = true;
+    }else{
+      this.hide = false;
+      this.hideRegister = true;
+      this.hideLayout = false;
+    }    
+   
+  }
 }

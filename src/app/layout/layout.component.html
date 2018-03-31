@@ -1,15 +1,15 @@
-<mat-sidenav-container class="example-container">
-	<mat-sidenav #sidenav class="nav" mode="push">
+<mat-sidenav-container class="example-container" [hidden]="hideLayout">
+	<mat-sidenav #sidenav class="nav" mode="push">		
 		<!-- //////////////////// -->
 		<mat-accordion>
 			<mat-expansion-panel *ngFor="let cat of cats">
 				<mat-expansion-panel-header>
 					<mat-panel-title>
 						{{ cat.name }}
-					</mat-panel-title>
+					</mat-panel-title>					
 				</mat-expansion-panel-header>
-				<a href="#" mat-button *ngFor="let subcat of cat.subcat" style="display:block">{{ subcat.name }}</a>
-			</mat-expansion-panel>
+				<a routerLink="/subcategory/{{subcat.name}}" mat-button *ngFor="let subcat of cat.subcat" style="display:block">{{ subcat.name }}</a>	
+			</mat-expansion-panel>			
 		</mat-accordion>
 
 		<!-- //////////////////// -->
@@ -20,7 +20,7 @@
 
 			<mat-toolbar-row>
 				<mat-icon (click)="sidenav.toggle()" style="cursor:pointer">list</mat-icon>
-				<a routerLink="/" routerLinkActive="active"><span>Purchase</span></a>
+				<a routerLink="/" routerLinkActive="active"><span>Purchase</span></a> 
 				<!-- search bar -->
 				<div class="container">
 
@@ -54,17 +54,17 @@
 						</div>
 					</div>
 				</div>
-				<a routerLink="/logout" routerLinkActive="Active" type="butoon" name="button">LogOut</a>
-
+			
 			</mat-toolbar-row>
 
 			<mat-toolbar-row >
 				<div >
-					<a *ngFor="let cat of cats" href="#" id={{cat._id}} style="padding:15px">{{cat.name}}</a>
-					<a href="#" style="padding:15px">All Categories</a>
+					<a *ngFor="let cat of cats" routerLink="/category/{{cat.name}}" routerLinkActive="active" id={{cat._id}} style="padding:15px">{{cat.name}}</a>
+					<a routerLink="/category/all" style="padding:15px">All Categories</a>
 				</div>
-			</mat-toolbar-row>
+				<a routerLink="/logout" routerLinkActive="active">Logout</a>
 
+			</mat-toolbar-row>
 		</mat-toolbar>
 
 		<router-outlet></router-outlet>

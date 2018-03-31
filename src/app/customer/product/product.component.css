@@ -1,7 +1,0 @@
-.monospaced { font-family: 'Ubuntu Mono', monospaced ; }
-.description{
-  white-space: nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  max-width: 100%;
-}

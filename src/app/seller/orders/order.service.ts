@@ -9,11 +9,10 @@ export class OrderService {
 
    }
 
-   getOrders(){
-    return this.http.get(`http://localhost:9050/api/orders/filter/5ab6dcb64c86ec21273ac4e2`);
+   getOrders(page){
+    return this.http.get(`https://localhost:9050/api/orders/5abe351941c8533315963a5b/${page}`);
     //.map((res)=>res.json());
    }
-
 
 
 }
