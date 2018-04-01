@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyproductsService } from '../../myproducts.service';
 import { LoginService } from '../../login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,28 +10,35 @@ import { LoginService } from '../../login.service';
   styleUrls: ['./myproducts.component.css']
 })
 export class MyproductsComponent implements OnInit {
-   sellerId;
-   loggedIn : boolean = true;
-   products;
+  sellerId;
+  loggedIn: boolean = true;
+  products;
 
-    constructor(private myproductsService: MyproductsService, private loginSer: LoginService) { }
+  constructor(private myproductsService: MyproductsService,
+    private loginservice: LoginService,
+    private router: Router) {  }
 
-    ngOnInit() {
-      // this.loginSer.getUserInfo().subscribe((res : any) => {
-      //   if(res){
-      //     this.loggedIn = true;
-      //     console.log(res);
-      //     this.sellerId = res._id.json();
-      //     console.log(this.sellerId);
-      //   }else{
-      //     this.loggedIn = false;
-      //   }
-      //});
+  ngOnInit() {
 
-      this.myproductsService.getmyproducts("5abe351841c8533315963a5a").subscribe(res => {
+    this.loginservice.getUserInfo().subscribe((res) => {
+     
+      
+      if(!res){
+        this.router.navigate(['/login']); //no one logged in redirect to login
+      }
+
+      var { user } = res;
+      this.sellerId = user.id;
+
+      if (user.userType != "seller") {
+        this.router.navigate(['/']);
+      }
+
+      this.myproductsService.getmyproducts(this.sellerId).subscribe(res => {
+        console.log(res);
         this.products = res;
       });
-    }
 
-
+    });
+  }
 }

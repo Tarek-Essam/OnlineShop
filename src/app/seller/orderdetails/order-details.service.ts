@@ -9,8 +9,8 @@ export class OrderDetailsService {
 
   constructor( private http:HttpClient) { }
 
-  getOrderDetails(oId){
-    return this.http.get(`https://localhost:9050/api/orders/5abe351941c8533315963a5b/1/${oId}`);
+  getOrderDetails(sellerId ,oId){
+    return this.http.get(`https://localhost:9050/api/orders/${sellerId}/1/${oId}`);
     //.map((res)=>res.json());
    }
 

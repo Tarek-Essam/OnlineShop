@@ -34,35 +34,52 @@ export class AddproductComponent implements OnInit {
   // private AddproductService: AddproductService
   constructor(private AddproductService: AddproductService,
               private categoriesService: CategoriesService,
-              private loginSer: LoginService,
+              private loginservice: LoginService,
               private router : Router
-            ) {
-    this.categoriesService.getSubcats().subscribe((res) => {
-      this.subcats = res;
-    });
+                                     ) {              
+              this.loginservice.getUserInfo().subscribe((res) => {
+
+                if(!res){
+                  router.navigate(['/login']); //no one logged in redirect to login
+                }
+
+                var {user} = res;
+                //console.log(res);
+                
+                this.model.userId = user.id;
+                //console.log(user.userType);
+                
+                if(user.userType != "seller"){
+                    router.navigate(['/']);
+                }
+                this.categoriesService.getSubcats().subscribe((res) => {
+                  this.subcats = res;
+                });
+            });
+  
   }
 
   ngOnInit() {
     //console.log(window.location.href.split('/'));
-    this.loginSer.getUserInfo().subscribe((res)=>{
-      // this.userInfo = res;
-       console.log(res)
-      //var user = res.user;
-      // console.log(this.userInfo);
-      this.userInfo = res.user;
-      this.userID = res.user.id;
-      // console.log(this.userInfo);
+    // this.loginservice.getUserInfo().subscribe((res)=>{
+    //   // this.userInfo = res;
+    //    console.log(res)
+    //   //var user = res.user;
+    //   // console.log(this.userInfo);
+    //   this.userInfo = res.user;
+    //   this.userID = res.user.id;
+    //   // console.log(this.userInfo);
       
-      if (this.userInfo.userType == "seller") {
-          this.model.userId = this.userID;
-          // this.userID = this.userInfo.id;
-        console.log(this.userID);
+    //   if (this.userInfo.userType == "seller") {
+    //       this.model.userId = this.userID;
+    //       // this.userID = this.userInfo.id;
+    //     console.log(this.userID);
           
-      }
-      else{
-        this.router.navigate(["/"]);
-      }
-    })
+    //   }
+    //   else{
+    //     this.router.navigate(["/"]);
+    //   }
+    // })
  }
 
   addProduct() {

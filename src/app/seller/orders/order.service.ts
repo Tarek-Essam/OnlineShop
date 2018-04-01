@@ -9,8 +9,8 @@ export class OrderService {
 
    }
 
-   getOrders(page){
-    return this.http.get(`https://localhost:9050/api/orders/5abe351941c8533315963a5b/${page}`);
+   getOrders(sellerId ,page){
+    return this.http.get(`https://localhost:9050/api/orders/${sellerId}/${page}`);
     //.map((res)=>res.json());
    }
 

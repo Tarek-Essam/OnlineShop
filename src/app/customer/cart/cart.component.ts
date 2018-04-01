@@ -25,27 +25,31 @@ export class CartComponent implements OnInit {
         loginservice.getUserInfo().subscribe((res) => {
             var {user} = res;
             this.userId = user.id;
+            console.log(user.userType);
+            
             if(user.userType != "customer"){
                 router.navigate(['/']);
             }
+
+            this.cartservice.getCart(this.userId).subscribe((data) => {
+                this.products = data;
+                if(!this.products){
+                    this.state = false;
+                }
+                this.products.forEach(product => {
+                    this.total += product.price;
+                });
+                this.numbers = new Array(this.products.length);
+                this.numbers.fill(1, 0);
+                console.log(this.numbers);
+    
+            });
         });
 
      }
 
     ngOnInit() {
-        this.cartservice.getCart(this.userId).subscribe((data) => {
-            this.products = data;
-            if(!this.products){
-                this.state = false;
-            }
-            this.products.forEach(product => {
-                this.total += product.price;
-            });
-            this.numbers = new Array(this.products.length);
-            this.numbers.fill(1, 0);
-            console.log(this.numbers);
-
-        });
+       
     }
 
     checkState(){
@@ -85,24 +89,22 @@ export class CartComponent implements OnInit {
             myOrder[this.products[i].userId].numbers.push(this.numbers[i]);
         }
 
-        this.cartservice.checkoutOrder(myOrder).subscribe((errors:any) => {           
+        this.cartservice.checkoutOrder(myOrder).subscribe((result:any) => {           
+            console.log(result);
 
-            if (errors.length) {
+            if (result.res == "outOfStock") {
                 console.log("error");
-                console.log(errors);
+                console.log(result.error); // out of stock products and available stock 
+                // modal showing the availble peices
+
             } else {
-                this.cartservice.addOrder(myOrder).subscribe((data:any) => {
-                    console.log(data);
-                    
-                    if(data.res == "success"){
-                        this.cartservice.emptyCart(this.userId).subscribe((data) => {
-                            this.products = [];
-                            this.numbers = [];
-                            this.total = 0;
-                            this.emptyCart = true;
-                        });
-                    }                    
-                });               
+                this.cartservice.emptyCart(this.userId).subscribe((data) => {
+                    this.products = [];
+                    this.numbers = [];
+                    this.total = 0;
+                    this.emptyCart = true;
+                });
+                            
             }
         })
     }

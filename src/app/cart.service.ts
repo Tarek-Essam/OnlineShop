@@ -26,10 +26,10 @@ export class CartService {
     return this.http.post('https://localhost:9050/api/cart/checkout', JSON.stringify(order), {headers: headers});
   }
 
-  addOrder(order){
-    let headers = new HttpHeaders({'Content-Type':  'application/json'});
-    return this.http.post('https://localhost:9050/api/orders/add', JSON.stringify(order), {headers: headers});
-  }
+  // addOrder(order){
+  //   let headers = new HttpHeaders({'Content-Type':  'application/json'});
+  //   return this.http.post('https://localhost:9050/api/orders/add', JSON.stringify(order), {headers: headers});
+  // }
 
   emptyCart(userId){
     let headers = new HttpHeaders({'Content-Type':  'application/json'});

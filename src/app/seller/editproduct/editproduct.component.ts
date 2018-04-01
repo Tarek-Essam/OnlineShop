@@ -3,6 +3,7 @@ import { EditproductService } from '../../editproduct.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoriesService } from '../../categories.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { LoginService } from '../../login.service';
 
 
 @Component({
@@ -18,11 +19,28 @@ export class EditproductComponent implements OnInit {
   res;
 
   constructor(private EditproductService: EditproductService,
-    private categoriesService: CategoriesService,
-    private route: ActivatedRoute,
-    private router: Router) {
-    this.categoriesService.getSubcats().subscribe((res) => {
-      this.subcats = res;
+              private categoriesService: CategoriesService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private loginservice: LoginService) {
+
+      loginservice.getUserInfo().subscribe((res) => {
+        if(!res){
+          router.navigate(['/login']); //no one logged in redirect to login
+        }
+
+        var {user} = res;
+        console.log(res);
+        
+        //this.model.userId = user.id;
+        //console.log(user.userType);
+        
+        if(user.userType != "seller"){
+            router.navigate(['/']);
+        }
+        this.categoriesService.getSubcats().subscribe((res) => {
+          this.subcats = res;
+        });
     });
   }
 

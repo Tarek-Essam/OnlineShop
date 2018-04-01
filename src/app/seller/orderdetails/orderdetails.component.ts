@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetailsService } from "./order-details.service";
 import {ActivatedRoute, Params} from "@angular/router";
+import { LoginService } from '../../login.service';
+import { Router } from '@angular/router';
 
 import { log } from 'util';
 
@@ -18,9 +20,12 @@ export class OrderdetailsComponent implements OnInit {
   client:boolean;
   selected:String;
   uId;
-  
+  sellerId; 
 
-  constructor(private orderDetailsService:OrderDetailsService,private activatedRoute:ActivatedRoute ) {
+  constructor(private orderDetailsService:OrderDetailsService,
+              private activatedRoute:ActivatedRoute,
+              private loginservice: LoginService,
+              private router: Router ) {
 
     this.isSeller = true;
     this.client = false;
@@ -30,10 +35,21 @@ export class OrderdetailsComponent implements OnInit {
 
   ngOnInit() {
 
+   this.loginservice.getUserInfo().subscribe((res) => {
+    if (!res) {
+      this.router.navigate(['/login']); //no one logged in redirect to login
+    }
+    var { user } = res;
+    this.sellerId = user.id;
+
+    if (user.userType != "seller") {
+      this.router.navigate(['/']);
+    }
+
     this.activatedRoute.params.subscribe((params: Params)=>{
       let id = params['id'];
       console.log(id);
-      this.orderDetailsService.getOrderDetails(id).subscribe((res:any) => {
+      this.orderDetailsService.getOrderDetails(this.sellerId ,id).subscribe((res:any) => {
         //if(res.err)
         console.log(res);
         
@@ -43,9 +59,9 @@ export class OrderdetailsComponent implements OnInit {
         this.orderdetails = res.res[0];
         console.log(this.orderdetails);
       });
-
     });
-    
+
+   });    
   }
 
   changeStatus(event){

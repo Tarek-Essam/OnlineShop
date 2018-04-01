@@ -21,11 +21,18 @@ public replay:ReplaySubject<any> = new ReplaySubject(1);
   getUserInfo(){
     // return this.userInfoToUse;
     this.storage.getItem('token').subscribe((res:any)=>{
-      var headers = new HttpHeaders({'content-Type': 'application/json'});
-      headers = headers.append('token', res);
-      this.http.get('https://localhost:9050/api/authenticate', {headers: headers}).subscribe((result)=>{
-        this.replay.next(result);
-      });
+      console.log(res);
+      if(res){
+        var headers = new HttpHeaders({'content-Type': 'application/json'});
+        headers = headers.append('token', res);
+        this.http.get('https://localhost:9050/api/authenticate', {headers: headers}).subscribe((result)=>{
+          console.log(result);
+          
+          this.replay.next(result);
+        });
+      }else{
+        this.replay.next(res);
+      }     
     })
     return this.replay;
   }

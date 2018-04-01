@@ -19,7 +19,6 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpModule} from '@angular/http';
-import {GuardService} from './guard.service';
 import { LoginService } from './login.service';
 import { CategoriesService } from './categories.service';
 import { AddproductService } from './addproduct.service';
@@ -137,17 +136,17 @@ const appRoutes = [
     ReactiveFormsModule
            
   ],
-  providers: [LoginService, 
+  providers: [LoginService,
               CategoriesService, 
               AddproductService,
               EditproductService , 
               MyproductsService,
               CartService,
               ProductsService,
-              GuardService,
               OrderService,
               OrderDetailsService,
-              {provide: AuthServiceConfig,useFactory: getAuthServiceConfigs}          
+              {provide: AuthServiceConfig,useFactory: getAuthServiceConfigs},
+                        
             ],
   bootstrap: [AppComponent]
 })
